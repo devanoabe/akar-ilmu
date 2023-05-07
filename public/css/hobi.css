@@ -1,0 +1,12 @@
+.list-group-mine .list-group-item {
+    border-radius: 20px; 
+    box-shadow: 6px 6px 24px rgba(0, 0, 0, 0.385);
+    background-color: #36363661;
+    backdrop-filter: blur(25%); 
+    opacity: 20px;
+    color: white;
+  }
+  
+  .list-group-mine .list-group-item:hover {
+    background-color: rgb(29, 29, 29);
+  }
