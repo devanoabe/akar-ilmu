@@ -11,6 +11,7 @@
         <th>Question</th>
         <th>Answer</th>
         <th>Edit</th>
+        <th>Delete</th>
     </thead>
     <tbody>
         @if(count($questions)>0)
@@ -23,6 +24,9 @@
                 </td>
                 <td>
                     <button class="btn btn-info editButton" data-id="{{$q->id}}" data-toggle="modal" data-target="#editQnaModal">Edit</button>
+                </td>
+                <td>
+                    <button class="btn btn-danger deleteButton" data-id="{{$q->id}}" data-toggle="modal" data-target="#deleteQnaModal">Delete</button>
                 </td>
             </tr>
             @endforeach 
@@ -97,6 +101,8 @@
     </div>
 </div>
 
+
+
 <div class="modal fade" id="editQnaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModelCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
@@ -123,6 +129,31 @@
                     <span class="editError" style="color:red;"></span>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <button type="submit" class="btn btn-primary">Update QnA</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="deleteQnaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModelCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Delete Qna</h5>
+
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form id="deleteQna">
+                @csrf
+                <div class="modal-body">
+                            <input type="hidden" name="id" id="delete_qna_id">
+                            <p>are your sure you want to Delete exQna?</p>
+                    </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-danger">Delete</button>
                 </div>
             </form>
         </div>
@@ -203,6 +234,7 @@
         var html = '';
 
         for(let i=0; i<questions.length;i++){
+
             if(questions[i]['id'] == qid){
                 var answersLength = questions[i]['answers'].length;
                 for(let j =0; j < answersLength; j++){
@@ -332,7 +364,32 @@
         });
     });
 
+    //delete Q&a
+    $('.deleteButton').click(function(){
+        var id = $(this).attr('data-id');
+        $('#delete_qna_id').val(id);
+    });
 
+    $('#deleteQna').submit(function(e){
+        e.preventDefault();
+
+        var formData = $(this).serialize();
+
+        $.ajax({
+            url:"{{ route('deleteQna') }}",
+            type:"POST",
+            data:formData,
+            success:function(data){
+                if(data.success == true){
+                    location.reload();
+                }
+                else{
+                    alert(data.msg);
+                }
+            }
+        });
+    }
+    )
     
 
 });

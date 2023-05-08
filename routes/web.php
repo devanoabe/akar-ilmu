@@ -45,6 +45,7 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function(){
     Route::get('/get-qna-details', [AdminController::class, 'getQnaDetails'])->name('getQnaDetails');
     Route::get('/delete-ans', [AdminController::class, 'deleteAns'])->name('deleteAns');
     Route::post('/update-qna-ans', [AdminController::class, 'updateQna'])->name('updateQna');
+    Route::post('/delete-qna-ans', [AdminController::class, 'deleteQna'])->name('deleteQna');
 });
 
 //Route khusus untuk user

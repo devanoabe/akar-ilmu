@@ -33,6 +33,7 @@
         <th>Tryout</th>
         <th>Detail</th>
         <th>Pembuat</th>
+        <th>Add Questions</th>
         <th>Mata Pelajaran</th>
     </tr>
     @foreach ($tryout as $t)
@@ -42,8 +43,10 @@
         <td>{{ $t->namaTryout }}</td>
         <td>{{ $t->detailTryout }}</td>
         <td>{{ $t->user_id }}</td>
+        <td>
+            <a href="#" data-id="{{ $t->id }}" data-toggle="modal" data-target="#addQnaModal">Add Question</a>
+        </td>
         <td>{{ $t->mata_pelajaran_id }}</td>
-
         <td>
             <form action="{{ route('tryout.destroy',$t->id) }}" method="POST">
                 <a class="btn btn-info" href="{{ route('tryout.show',$t->id) }}">Show</a>
@@ -53,6 +56,47 @@
                 <button type="submit" class="btn btn-danger">Delete</button>
             </form>
         </td>
+
+<div class="modal fade" id="addQnaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModelCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Add QnA</h5>
+
+                <button id="addAnswer" class="ml-5 btn btn-info">Add Answer</button>
+
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form id="addQna">
+                @csrf
+                <div class="modal-body">
+                    <input type="hidden" name="exam_id" id="addExamId">
+                    <br><br>
+                    <select name="questuions" multiple multiselect-search="true" multiselect-select-all="true" onchange="console.log(this.selectedOptions)">
+                        <option value="">Select Questions</option>
+                        <option value="Soal1">Soal1</option>
+                        <option value="Soal2">Soal2</option>
+                        <option value="Soal3">Soal3</option>
+                        <option value="Soal4">Soal4</option>
+                    </select>
+
+                    <div class="row">
+                        <div class="col">
+                            <input type="text" class="w-100" name="question" placeholder="Enter Question" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <span class="error" style="color:red;"></span>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Add QnA</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
     </tr>
  @endforeach
  </table>
