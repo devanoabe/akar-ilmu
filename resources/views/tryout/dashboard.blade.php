@@ -15,6 +15,7 @@
         <th>Add Questions</th>
         <th>Edit</th>
         <th>Hapus</th>
+        <th>Copy Link</th>
     </thead>
     <tbody>
         @if(count($exams)>0)
@@ -34,6 +35,7 @@
                 <td>
                     <button class="btn btn-danger deleteButton" data-id="{{$exam->id}}" data-toggle="modal" data-target="#deleteExamModal">Delete</button>
                 </td>
+                <td><a href="#" data-code="{{ $exam->keterangan }}" class="copy"><i class="fa fa-copy"></i></a></td>
             </tr>
             @endforeach 
         @else
@@ -43,7 +45,31 @@
         @endif
     </tbody>
 </table>
- 
+
+<script>
+    $(document).ready(function(){
+        $(' .copy').click(function(){
+            $(this).parent().prepend('<span class="copied_text">Copied</span>');
+
+            var code = $(this).attr('data-code');
+            var url = "{{URL::to('/')}}/exam/"+code;
+
+            var $temp = $("<input>");
+            $("body").append($temp);
+            $temp.val(url).select();
+            document.execCommand("copy");
+            $temp.remove();
+
+            setTimeout(() =>{
+                $(' .copied_text').remove();
+                
+            }, 1000);
+        })
+    });
+
+    </script>
+
+
 <div class="modal fade" id="addExamModal" tabindex="-1" role="dialog" aria-labelledby="exampleModelCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
