@@ -6,72 +6,49 @@ use Illuminate\Http\Request;
 use App\Models\Tryout;
 use App\Models\MataPelajaran;
 use App\Models\User;
+use App\Models\Exam;
 use Illuminate\Http\Response;
 
 class TryoutController extends Controller
 {
-    public function cariTryout(Request $request)
-    {
-        $cari = $request->cari;
-        $tryout = Tryout::where('namaTryout', 'like', '%'.$cari.'%')->paginate(5);
-        return view('admin.tryout', compact('tryout'));
-    }   
 
-    public function index()
+    public function examDashboard()
     {       
-        $tryout = Tryout::all(); // Mengambil semua isi tabel
-        return view('admin.tryout', compact('tryout'));
-    }
-    
-
-
-   public function create()
-    {
-        $user = User::all();
-        $mapel = MataPelajaran::all();
-        return view('tryout.create', compact('user', 'mapel'));
+        $subjects = MataPelajaran::all();// Mengambil semua isi tabel
+        return view('tryout.dashboard',['subjects'=>$subjects]);
     }
 
-    public function store(Request $request)
-    {
-        $request->validate([
-            'id' => 'required',
-            'namaTryout' => 'required',
-            'detailTryout' => 'required',
-            'user_id' => 'required',
-            'mata_pelajaran_id' => 'required',
-        ]);
-        Tryout::create($request->all());
-        return redirect()->route('tryout.index')->with('success', 'Mata Pelajaran Berhasil Ditambahkan');
+    //add Exam
+    public function addExam(Request $request) {
+        try{    
+                    Exam::insert([
+                        'exam_name' => $request->$exam_name,
+                        'subject_id' => $request->$subject_id,
+                        'keterangan' => $request->$keterangan,
+                        'time' => $request->$time,
+                    ]);
+            
+                return response() -> json(['success'=>true, 'msg'=>'Berhasil menambah!']);
+            } catch(\Expection $e){
+                return response() -> json(['success'=>false, 'msg'=>$e->getMessage()]);
+            };
+            
     }
 
-    public function show($id)
+    public function updateExam(Request $request)
     {
-        $tryout = Tryout::find($id);
-        return view('tryout.detail', compact('tryout'));
+        try{
 
-    }
+            $exam = Exam::find($request->exam_id);
+            $exam->exam_name = $request->exam_name;
+            $exam->subject_id = $request->subject_id;
+            $exam->keterangan = $request->keterangan;
+            $exam->time = $request->time;
+            $exam->save();
+            return response() -> json(['success'=>true, 'msg'=>'Berhasil update!']);
 
-    public function edit($id)
-    {
-        $tryout = Tryout::find($id);
-        return view('tryout.edit', compact('tryout'));
-    }
-
-    public function update(Request $request, $id)
-    {
-        $request->validate([
-            'namaTryout' => 'required',
-            'detailTryout' => 'required',
-        ]);
-        Tryout::find($id)->update($request->all());
-        return redirect()->route('tryout.index')->with('success', 'Mata Pelajaran Berhasil Ditambahkan');
-    }
-
-    public function destroy($id)
-    {
-        Tryout::find($id)->delete();
-        return redirect()->route('tryout.index')-> with('success', 'Mata Pelajaran Berhasil Dihapus');
-
+        }catch(\Expection $e){
+            return response() -> json(['success'=>false, 'msg'=>$e->getMessage()]);
+        };
     }
 }

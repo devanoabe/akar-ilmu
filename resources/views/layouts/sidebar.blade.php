@@ -41,10 +41,10 @@
                     </a>
                 </li>
                 <li class="nav-item pill-3">
-                    <a style="color: #38373e; font-weight: bolder;" href="{{ route('tryout.index') }}" class="nav-link {{ (request()->routeIs('tryout.index') ? 'active' : '') }}">
+                    <a style="color: #38373e; font-weight: bolder;" href="{{ route('admin.exam') }}" class="nav-link {{ (request()->routeIs('tryout.index') ? 'active' : '') }}">
                         <i class="nav-icon fas fa-th"></i>
                         <p>
-                            Tryout
+                            Exam
                         </p>
                     </a>
                 </li>

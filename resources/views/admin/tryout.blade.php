@@ -44,7 +44,7 @@
         <td>{{ $t->detailTryout }}</td>
         <td>{{ $t->user_id }}</td>
         <td>
-            <a href="#" data-id="{{ $t->id }}" data-toggle="modal" data-target="#addQnaModal">Add Question</a>
+            <a href="#" class="addQuestions" data-id="{{ $t->id }}" data-toggle="modal" data-target="#addQnaModal">Add Question</a>
         </td>
         <td>{{ $t->mata_pelajaran_id }}</td>
         <td>
@@ -56,14 +56,15 @@
                 <button type="submit" class="btn btn-danger">Delete</button>
             </form>
         </td>
+    </tr>
+ @endforeach
+ </table>
 
-<div class="modal fade" id="addQnaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModelCenterTitle" aria-hidden="true">
+ <div class="modal fade" id="addQnaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModelCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLongTitle">Add QnA</h5>
-
-                <button id="addAnswer" class="ml-5 btn btn-info">Add Answer</button>
 
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -73,20 +74,24 @@
                 @csrf
                 <div class="modal-body">
                     <input type="hidden" name="exam_id" id="addExamId">
+                    <input type="search" name="search" class="w-100" placeholder="Search here">
                     <br><br>
-                    <select name="questuions" multiple multiselect-search="true" multiselect-select-all="true" onchange="console.log(this.selectedOptions)">
+                    <table>
+                        <thead>
+                            <th>Select</th>
+                            <th>Question</th>
+                        </thead>
+                        <tbody class="addBody">
+
+                        </tbody>
+                    </table>
+                    <!-- <select name="questuions" multiple multiselect-search="true" multiselect-select-all="true" onchange="console.log(this.selectedOptions)">
                         <option value="">Select Questions</option>
                         <option value="Soal1">Soal1</option>
                         <option value="Soal2">Soal2</option>
                         <option value="Soal3">Soal3</option>
                         <option value="Soal4">Soal4</option>
-                    </select>
-
-                    <div class="row">
-                        <div class="col">
-                            <input type="text" class="w-100" name="question" placeholder="Enter Question" required>
-                        </div>
-                    </div>
+                    </select> -->
                 </div>
                 <div class="modal-footer">
                     <span class="error" style="color:red;"></span>
@@ -97,8 +102,19 @@
         </div>
     </div>
 </div>
-    </tr>
- @endforeach
- </table>
+
+<script>
+    $(document).ready(function(){
+    //add question
+    $('.addQuestion').click(function(){
+
+        var id = $(this).attr('data-id');
+
+    });
+
+});
+
+        
+</script>
  
 @endsection

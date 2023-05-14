@@ -365,7 +365,7 @@
     });
 
     //delete Q&a
-    $('.deleteButton').click(function(){
+    $(".deleteButton").click(function(){
         var id = $(this).attr('data-id');
         $('#delete_qna_id').val(id);
     });

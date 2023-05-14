@@ -31,14 +31,21 @@ Auth::routes();
 Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function(){
     //Route Beranda
     Route::get('/beranda', [AdminController::class, 'index'])->name('admin.beranda');
+
     //Route User
     Route::get('/user', [UserController::class, 'index'])->name('admin.user');
+
     //Route Mapel
     Route::post('CariMapel', [MataPelajaranController::class, 'cariMapel'])->name('cariMapel');
     Route::resource('mapel', MataPelajaranController::class)->name('mapel', 'admin.mapel');
+
     //Route Tryout
-    Route::post('CariTryout', [TryoutController::class, 'cariTryout'])->name('cariTryout');
-    Route::resource('tryout', TryoutController::class)->name('tryout', 'admin.tryout');
+    Route::get('/exam', [AdminController::class, 'examDashboard'])->name('admin.exam');
+    Route::post('/add-exam', [AdminController::class, 'addExam'])->name('addExam');
+    Route::get('/get-exam-detail/{id}', [AdminController::class, 'getExamDetails'])->name('getExamDetails');
+    Route::post('/update-exam', [AdminController::class, 'updateExam'])->name('updateExam');
+    Route::post('/delete-exam', [AdminController::class, 'deleteExam'])->name('deleteExam');
+
     //Route Soal
     Route::get('/qna-ans', [AdminController::class, 'qnaDashboard'])->name('admin.qna');
     Route::post('/add-qna-ans', [AdminController::class, 'addQna'])->name('addQna');
@@ -46,6 +53,10 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function(){
     Route::get('/delete-ans', [AdminController::class, 'deleteAns'])->name('deleteAns');
     Route::post('/update-qna-ans', [AdminController::class, 'updateQna'])->name('updateQna');
     Route::post('/delete-qna-ans', [AdminController::class, 'deleteQna'])->name('deleteQna');
+
+    //Route Tryout Soal
+    Route::get('/get-questions', [AdminController::class, 'getQuestions'])->name('getQuestions');
+    Route::post('/add-questions', [AdminController::class, 'addQuestions'])->name('addQuestions');
 });
 
 //Route khusus untuk user
