@@ -13,6 +13,7 @@
         <th>Keterangan</th>
         <th>Time</th>
         <th>Add Questions</th>
+        <th>Show Questions</th>
         <th>Edit</th>
         <th>Hapus</th>
     </thead>
@@ -27,6 +28,9 @@
                 <td>{{$exam->time}}</td>
                 <td>
                     <a href="#" class="addQuestion" data-id="{{ $exam->id }}" data-toggle="modal" data-target="#addQnaModal">Add Question</a>
+                </td>
+                <td>
+                    <a href="#" class="seeQuestions" data-id="{{ $exam->id }}" data-toggle="modal" data-target="#seeQnaModal">See Question</a>
                 </td>
                 <td>
                     <button class="btn btn-info editButton" data-id="{{$exam->id}}" data-toggle="modal" data-target="#editExamModal">Edit</button>
@@ -184,6 +188,40 @@
     </div>
 </div>
 
+<div class="modal fade" id="seeQnaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModelCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Questions</h5>
+
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+                <div class="modal-body">
+                    <table class="table">
+                        <thead>
+                            <th>No</th>
+                            <th>Question</th>
+                        </thead>
+                        <tbody class="seeQuestionTable">
+                        </tbody>
+                    </table>
+                    <!-- <select name="questuions" multiple multiselect-search="true" multiselect-select-all="true" onchange="console.log(this.selectedOptions)">
+                        <option value="">Select Questions</option>
+                        <option value="Soal1">Soal1</option>
+                        <option value="Soal2">Soal2</option>
+                        <option value="Soal3">Soal3</option>
+                        <option value="Soal4">Soal4</option>
+                    </select> -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+    </div>
+</div>
+
 <script>
 $(document).ready(function(){
 
@@ -323,6 +361,42 @@ $(document).ready(function(){
                 } else {
                     alert(data.msg);
                 }
+            }
+        });
+    });
+
+    //see questions
+    $('.seeQuestions').click(function(){
+        var id = $(this).attr('data-id');
+
+        $.ajax({
+            url:"{{ route('getExamQuestions') }}",
+            type:"GET",
+            data:{exam_id:id},
+            success:function(data){
+                
+                var html = '';
+                var questions = data.data;
+                if(questions.length > 0){
+                    
+                    for(let i = 0; i < questions.length; i++){
+                        console.log(questions[i]['question'][0]);
+                        html +=`
+                        <tr>
+                            <td>`+(i+1)+`</td>
+                            <td>`+questions[i]['question'][0]['soal']+`</td>
+                        </tr>
+                        `;
+                    }
+                }
+                else{
+                    html +=`
+                    <tr>
+                        <td colspan="1">Questions not available!</td>
+                    </tr>
+                    `;
+                }
+                $('.seeQuestionTable').html(html);
             }
         });
     });

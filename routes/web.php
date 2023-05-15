@@ -64,6 +64,8 @@ Route::get('/welcome', [HomeController::class, 'welcome'])->name('home.welcome')
 
 Route::get('/dashboard', [UserController::class, 'loadDashboard']);
 
+Route::get('/get-exam-questions', [AdminController::class, 'getExamQuestions'])->name('getExamQuestions');
+
 //User Route
 // Route::middleware(['auth','user-role:user'])->group(function()
 // {
