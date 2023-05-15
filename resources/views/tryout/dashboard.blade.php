@@ -383,8 +383,11 @@ $(document).ready(function(){
                         console.log(questions[i]['question'][0]);
                         html +=`
                         <tr>
-                            <td>`+(i+1)+`</td>
-                            <td>`+questions[i]['question'][0]['soal']+`</td>
+                            <td>` + (i + 1) + `</td>
+                            <td>` + questions[i]['question'][0]['soal'] + `</td>
+                            <td>
+                                <button class="btn btn-danger deleteQuestion" data-id="` + questions[i]['id'] + `">Delete</button>
+                            </td>
                         </tr>
                         `;
                     }
@@ -400,6 +403,24 @@ $(document).ready(function(){
             }
         });
     });
+
+    //delete question
+    $(document).on('click', '.deleteQuestion', function() {
+    var id = $(this).attr('data-id');
+    var obj = $(this);
+    $.ajax({
+        url: "{{ route('deleteExamQuestions') }}",
+        type: "GET",
+        data: { id: id },
+        success: function(data) {
+            if (data.success == true) {
+                obj.parent().parent().remove();
+            } else {
+                alert(data.msg);
+            }
+        }
+    });
+});
 
 });
 
