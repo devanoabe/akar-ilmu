@@ -12,7 +12,7 @@ use App\Models\Exam;
 class AdminController extends Controller
 {
     public function examDashboard()
-    {       
+    {   
         $subjects = MataPelajaran::all();// Mengambil semua isi tabel
         $exams = Exam::with('subjects')->get();
         return view('tryout.dashboard',['subjects'=>$subjects, 'exams'=>$exams]);
@@ -21,11 +21,13 @@ class AdminController extends Controller
     //add Exam
     public function addExam(Request $request) {
         try {
+            $unique_id = uniqid('exid');
             Exam::insert([
                 'exam_name' => $request->exam_name,
                 'subject_id' => $request->subject_id,
                 'keterangan' => $request->keterangan,
                 'time' => $request->time,
+                'entrance_id' => $unique_id
             ]);
     
             return response()->json(['success' => true, 'msg' => 'Berhasil menambah!']);
