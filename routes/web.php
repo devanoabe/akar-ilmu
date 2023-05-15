@@ -62,6 +62,7 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function(){
 //Route khusus untuk user
 Route::get('/welcome', [HomeController::class, 'welcome'])->name('home.welcome');
 
+Route::get('/dashboard', [UserController::class, 'loadDashboard']);
 
 //User Route
 // Route::middleware(['auth','user-role:user'])->group(function()
