@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Exam;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -82,5 +83,10 @@ class UserController extends Controller
         }
 
         return response()->json(compact('user'));
+    }
+    public function loadDashboard()
+    {
+        $exams = Exam::with('subjects')->orderBy('exam_name')->get();
+        return view('student.dashboard',['exams'=>$exams]);
     }
 }

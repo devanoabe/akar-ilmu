@@ -57,10 +57,15 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function(){
     //Route Tryout Soal
     Route::get('/get-questions', [AdminController::class, 'getQuestions'])->name('getQuestions');
     Route::post('/add-questions', [AdminController::class, 'addQuestions'])->name('addQuestions');
+    Route::get('/get-exam-questions', [AdminController::class, 'getExamQuestions'])->name('getExamQuestions');
+    Route::get('/delete-exam-questions', [AdminController::class, 'deleteExamQuestions'])->name('deleteExamQuestions');
 });
 
 //Route khusus untuk user
 Route::get('/welcome', [HomeController::class, 'welcome'])->name('home.welcome');
+
+Route::get('/dashboard', [UserController::class, 'loadDashboard']);
+
 
 
 //User Route
