@@ -8,6 +8,8 @@ use App\Http\Controllers\MataPelajaranController;
 use App\Http\Controllers\TryoutController;
 use App\Http\Controllers\KartuSoalController;
 use App\Http\Controllers\JenisSoalController;
+use App\Http\Controllers\ExamController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -61,10 +63,13 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function(){
     Route::get('/delete-exam-questions', [AdminController::class, 'deleteExamQuestions'])->name('deleteExamQuestions');
 });
 
+
 //Route khusus untuk user
 Route::get('/welcome', [HomeController::class, 'welcome'])->name('home.welcome');
 
 Route::get('/dashboard', [UserController::class, 'loadDashboard']);
+Route::get('/exam/{id}', [ExamController::class, 'loadExamDashboard']);
+
 
 
 

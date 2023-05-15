@@ -39,7 +39,7 @@
                 <td>
                     <button class="btn btn-danger deleteButton" data-id="{{$exam->id}}" data-toggle="modal" data-target="#deleteExamModal">Delete</button>
                 </td>
-                <td><a href="#" data-code="{{ $exam->keterangan }}" class="copy"><i class="fa fa-copy"></i></a></td>
+                <td><a href="#" data-code="{{ $exam->entrance_id }}" class="copy"><i class="fa fa-copy"></i></a></td>
             </tr>
             @endforeach 
         @else
