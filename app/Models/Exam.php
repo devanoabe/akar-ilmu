@@ -14,11 +14,16 @@ class Exam extends Model
         'exam_name',
         'subject_id',
         'keterangan',
-        'time'
+        'time',
     ];
 
     public function subjects()
     {
         return $this->hasMany(MataPelajaran::class,'id','subject_id');
+    }
+
+    public function getQnaExam()
+    {
+        return $this->hasMany(QnaExam::class,'exam_id','id');
     }
 }
