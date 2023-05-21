@@ -6,7 +6,7 @@
         <thead>
             <th>#</th>
             <th>Exam Name</th>
-            <th>Subject id</th>
+            <th>Mata Pelajaran</th>
             <th>Time</th>
             <th>Keterangan</th>
         </thead>
@@ -18,9 +18,8 @@
                     <tr>
                         <td>{{ $count++ }}</td>
                         <td>{{ $exam->exam_name }}</td>
-                        <td>{{ $exam->subject_id }}</td>
+                        <td>{{ $exam->subjects[0]['namaMapel'] }}</td>
                         <td>{{ $exam->time }}</td>
-                        
                         <td>{{ $exam->keterangan }} Time</td>
                     </tr>
                 @endforeach

@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Exam;
 use App\Models\QnaExam;
+use App\Models\ExamAttempt;
+use App\Models\ExamAnswer;
+use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 
 
@@ -27,6 +30,7 @@ class ExamController extends Controller
 
 
                 }else{ 
+
                 return view('student.exam-dashboard',['success'=>false, 'msg'=>'This exam is not available for now!', 'exam'=>$qnaExam]);
 
 
@@ -34,7 +38,31 @@ class ExamController extends Controller
 
             }
         }
-    }}
+    }
+
+    public function examSubmit(Request $request)
+    {
+        $attempt_id = ExamAttempt::insertGetId([
+            'exam_id' => $request->exam_id,
+            'user_id' => Auth::user()->id
+        ]);
+
+        $qcount = count($request->q);
+        if($qcount > 0){
+            for($i = 0; $i < $qcount; $i++){
+                ExamAnswer::insert([
+                    'attempt_id' => $attempt_id,
+                    'question_id' => $request->q[$i],
+                    'answer_id' => request()->input('ans_'.($i+1)),
+                ]);
+            }
+        }
+
+        return view('thank-you');
+    }
+    
+
+}
             
         // }else{
         //     // dd('aa');

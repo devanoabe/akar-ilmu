@@ -12,6 +12,27 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
+    <script src="{{ asset('qq/js/jquery.min.js') }}"></script>
+    <script src="{{ asset('qq/js/popper.js') }}"></script>
+    <script src="{{ asset('qq/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('qq/js/main.js') }}"></script>
+    <script src="{{ asset('qq/js/multiselect-dropdown.js') }}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="{{ asset('assets/plugins/fontawesome-free/css/all.min.css') }}">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="{{ asset('assets/dist/css/adminlte.min.css') }}">
+
+    <link rel="stylesheet" href="{{ asset('qq/css/style.css') }}">
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{{ asset('js/multiselect-dropdown.js') }}"></script>
+    <style>
+        .multiselect-dropdown{
+            width:100%!important;
+        }
+    </style>
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])

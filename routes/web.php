@@ -69,6 +69,7 @@ Route::get('/welcome', [HomeController::class, 'welcome'])->name('home.welcome')
 
 Route::get('/dashboard', [UserController::class, 'loadDashboard']);
 Route::get('/exam/{id}', [ExamController::class, 'loadExamDashboard']);
+Route::post('/exam-submit', [ExamController::class, 'examSubmit'])->name('examSubmit');
 
 
 
