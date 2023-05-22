@@ -26,6 +26,7 @@ class AdminController extends Controller
                 'exam_name' => $request->exam_name,
                 'subject_id' => $request->subject_id,
                 'keterangan' => $request->keterangan,
+                'date' => $request->date,
                 'time' => $request->time,
                 'entrance_id' => $unique_id
             ]);
@@ -55,6 +56,7 @@ class AdminController extends Controller
             $exam->exam_name = $request->exam_name;
             $exam->subject_id = $request->subject_id;
             $exam->keterangan = $request->keterangan;
+            $exam->date = $request->date;
             $exam->time = $request->time;
             $exam->save();
             return response()->json(['success' => true, 'msg' => 'Exam Berhasil di update']);

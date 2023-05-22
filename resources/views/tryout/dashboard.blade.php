@@ -12,6 +12,7 @@
         <th>Subject</th>
         <th>Keterangan</th>
         <th>Time</th>
+        <th>Date</th>
         <th>Add Questions</th>
         <th>Show Questions</th>
         <th>Edit</th>
@@ -27,6 +28,7 @@
                 <td>{{$exam->subjects[0]['namaMapel']}}</td>
                 <td>{{$exam->keterangan}}</td>
                 <td>{{$exam->time}}</td>
+                <td>{{$exam->date}}</td>
                 <td>
                     <a href="#" class="addQuestion" data-id="{{ $exam->id }}" data-toggle="modal" data-target="#addQnaModal">Add Question</a>
                 </td>
@@ -96,6 +98,7 @@
                                     <option value="{{ $subject->id }}">{{ $subject->namaMapel }}</option>
                                 @endforeach
                         </select>
+                        <input class="w-100 mb-3" type="date" name="date" required min="@php echo date('Y-m-d'); @endphp">
                         <input class="w-100 mb-3" type="text" name="keterangan" placeholder="Keterangan" required>
                         <input class="w-100 mb-3" type="time" name="time" required>
                     </div>
@@ -132,6 +135,7 @@
                                     <option value="{{ $subject->id }}">{{ $subject->namaMapel }}</option>
                                 @endforeach
                         </select>
+                        <input class="w-100 mb-3" type="date" name="date" id="date" required min="@php echo date('Y-m-d'); @endphp">
                         <input class="w-100 mb-3" type="text" name="keterangan" id="keterangan" placeholder="Keterangan" required>
                         <input class="w-100 mb-3" type="time" name="time" id="time" required>
                 </div>
@@ -289,6 +293,7 @@ $(document).ready(function(){
                         $("#exam_name").val(exam[0].exam_name);
                         $("#subject_id").val(exam[0].subject_id);
                         $("#keterangan").val(exam[0].keterangan);
+                        $("#date").val(exam[0].date);
                         $("#time").val(exam[0].time);
                     } else {
                         alert(data.msg);

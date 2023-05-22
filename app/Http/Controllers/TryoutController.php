@@ -26,6 +26,7 @@ class TryoutController extends Controller
                         'subject_id' => $request->$subject_id,
                         'keterangan' => $request->$keterangan,
                         'time' => $request->$time,
+                        'date' => $request->$date,
                     ]);
             
                 return response() -> json(['success'=>true, 'msg'=>'Berhasil menambah!']);
@@ -44,6 +45,7 @@ class TryoutController extends Controller
             $exam->subject_id = $request->subject_id;
             $exam->keterangan = $request->keterangan;
             $exam->time = $request->time;
+            $exam->date = $request->date;
             $exam->save();
             return response() -> json(['success'=>true, 'msg'=>'Berhasil update!']);
 
