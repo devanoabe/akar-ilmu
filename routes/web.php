@@ -61,6 +61,9 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function(){
     Route::post('/add-questions', [AdminController::class, 'addQuestions'])->name('addQuestions');
     Route::get('/get-exam-questions', [AdminController::class, 'getExamQuestions'])->name('getExamQuestions');
     Route::get('/delete-exam-questions', [AdminController::class, 'deleteExamQuestions'])->name('deleteExamQuestions');
+
+    //Route Marks
+    Route::get('/marks', [AdminController::class, 'loadMarks'])->name('admin.marks');
 });
 
 

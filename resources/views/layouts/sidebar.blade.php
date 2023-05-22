@@ -49,6 +49,14 @@
                     </a>
                 </li>
                 <li class="nav-item pill-3">
+                    <a style="color: #38373e; font-weight: bolder;" href="{{ route('admin.marks') }}" class="nav-link {{ (request()->routeIs('admin.marks') ? 'active' : '') }}">
+                        <i class="nav-icon fas fa-check"></i>
+                        <p>
+                            Marks
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item pill-3">
                     <a style="color: #38373e; font-weight: bolder;" href="{{ route('admin.qna') }}" class="nav-link {{ (request()->routeIs('soal') ? 'active' : '') }}">
                         <i class="nav-icon fas fa-question"></i>
                         <p>

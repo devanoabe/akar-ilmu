@@ -256,5 +256,10 @@ class AdminController extends Controller
             return response()->json(['success' => false, 'msg' => $e->getMessage()]);
         }
     }
-}
 
+    public function loadMarks()
+    {
+        $exams = Exam::with('getQnaExam')->get();
+        return view('admin.marks', compact('exams'));
+    }
+}
