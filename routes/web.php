@@ -64,13 +64,17 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function(){
 
     //Route Marks
     Route::get('/marks', [AdminController::class, 'loadMarks'])->name('admin.marks');
+
+    //Route Review
+    Route::get('/review-exam', [AdminController::class, 'reviewExam'])->name('admin.review');
+
 });
 
 
 //Route khusus untuk user
 Route::get('/welcome', [HomeController::class, 'welcome'])->name('home.welcome');
 
-Route::get('/dashboard', [UserController::class, 'loadDashboard']);
+Route::get('/dashboard', [UserController::class, 'loadDashboard'])->name('home.dashboard');;
 Route::get('/exam/{id}', [ExamController::class, 'loadExamDashboard']);
 Route::post('/exam-submit', [ExamController::class, 'examSubmit'])->name('examSubmit');
 

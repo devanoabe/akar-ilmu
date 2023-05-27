@@ -8,6 +8,8 @@ use App\Models\Answer;
 use App\Models\MataPelajaran;
 use App\Models\QnaExam;
 use App\Models\Exam;
+use App\Models\ExamAttempt;
+
 
 class AdminController extends Controller
 {
@@ -263,5 +265,11 @@ class AdminController extends Controller
     {
         $exams = Exam::with('getQnaExam')->get();
         return view('admin.marks', compact('exams'));
+    }
+
+    public function reviewExam(){
+        $attempts = ExamAttempt::with(['user','exam'])->orderBy('id')->get();
+
+        return view('admin.review', compact('attempts'));
     }
 }

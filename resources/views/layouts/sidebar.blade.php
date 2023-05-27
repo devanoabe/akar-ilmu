@@ -41,7 +41,7 @@
                     </a>
                 </li>
                 <li class="nav-item pill-3">
-                    <a style="color: #38373e; font-weight: bolder;" href="{{ route('admin.exam') }}" class="nav-link {{ (request()->routeIs('tryout.index') ? 'active' : '') }}">
+                    <a style="color: #38373e; font-weight: bolder;" href="{{ route('admin.exam') }}" class="nav-link {{ (request()->routeIs('admin.exam') ? 'active' : '') }}">
                         <i class="nav-icon fas fa-th"></i>
                         <p>
                             Exam
@@ -57,10 +57,18 @@
                     </a>
                 </li>
                 <li class="nav-item pill-3">
-                    <a style="color: #38373e; font-weight: bolder;" href="{{ route('admin.qna') }}" class="nav-link {{ (request()->routeIs('soal') ? 'active' : '') }}">
+                    <a style="color: #38373e; font-weight: bolder;" href="{{ route('admin.qna') }}" class="nav-link {{ (request()->routeIs('admin.qna') ? 'active' : '') }}">
                         <i class="nav-icon fas fa-question"></i>
                         <p>
                             Soal
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item pill-3">
+                    <a style="color: #38373e; font-weight: bolder;" href="{{ route('admin.review') }}" class="nav-link {{ (request()->routeIs('admin.review') ? 'active' : '') }}">
+                        <i class="nav-icon fas fa-signal"></i>
+                        <p>
+                            Review
                         </p>
                     </a>
                 </li>

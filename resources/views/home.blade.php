@@ -57,7 +57,7 @@
             <nav id="navbar" class="navbar">
                 <ul>
                     <li><a href="#hero">Home</a></li>
-                    <li><a href="#about">TryOut</a></li>
+                    <li><a href="{{ route('home.dashboard') }}">TryOut</a></li>
                     {{-- <li class="nav-item dropdown">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false" v-pre>

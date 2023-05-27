@@ -56,8 +56,8 @@ class ExamController extends Controller
                     'answer_id' => request()->input('ans_'.($i+1)),
                 ]);
             }
-        }
 
+        }
         return view('thank-you');
     }
     
