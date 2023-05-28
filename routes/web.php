@@ -67,6 +67,7 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function(){
 
     //Route Review
     Route::get('/review-exam', [AdminController::class, 'reviewExam'])->name('admin.review');
+    Route::get('/get-reviewed-qna',[AdminController::class,'reviewQna'])->name('reviewQna');
 
 });
 
