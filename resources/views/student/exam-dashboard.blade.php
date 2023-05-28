@@ -57,26 +57,23 @@
        var hours = time[0];
        var minutes = time[1];
        
-       setInterval(() => {
-
-            if(seconds <= 0){
-                minutes--;
-                seconds = 59;
-            }
-            if(minutes <= 0){
-                hours--;
-                minutes = 59;
-                seconds = 59;
-            }
-
-            let tempHours = hours.toString().length > 1 ? hours:'0'+hours;
-            let tempMinutes = minutes.toString().length > 1 ? minutes:'0'+minutes;
-            let tempSeconds = seconds.toString().length > 1 ? seconds:'0'+seconds;
-
-            $('.time').text(tempHours+':'+tempMinutes+':'+tempSeconds+'Left time');
-            seconds--;
-
-       }, 1000);
+      setInterval(() => {
+    
+    if(hours == 0 && minutes == 0 && second == 0){
+    clearInterval(timer);
+    $('#exam_form').submit();
+    }
+    console.log(hours+" -:- "+minutes+" -:- " +seconds );
+    
+    if(seconds <= 0){ minutes--; seconds=60; } if(minutes <=0 && hours !=0){ hours--; minutes=59; seconds=59; } let
+        tempHours=hours.toString().length> 1 ? hours:'0'+hours;
+        let tempMinutes = minutes.toString().length > 1 ? minutes:'0'+minutes;
+        let tempSeconds = seconds.toString().length > 1 ? seconds:'0'+seconds;
+    
+        $('.time').text(tempHours+':'+tempMinutes+':'+tempSeconds+'Left time');
+        seconds--;
+    
+        }, 1000);
     });
 
     function isValid(){

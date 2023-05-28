@@ -69,6 +69,8 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function(){
     Route::get('/review-exam', [AdminController::class, 'reviewExam'])->name('admin.review');
     Route::get('/get-reviewed-qna',[AdminController::class,'reviewQna'])->name('reviewQna');
 
+    Route::post('/approved-qna',[AdminController::class, 'approvedQna'])->name('approvedQna');
+
 });
 
 
