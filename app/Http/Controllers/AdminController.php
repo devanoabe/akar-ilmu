@@ -268,6 +268,20 @@ class AdminController extends Controller
         return view('admin.marks', compact('exams'));
     }
 
+    public function updateMarks(Request $request)
+    {
+        try {
+            
+            Exam::where('id',$request->exam_id)->update([
+                'marks' => $request->marks
+            ]);
+            return response()->json(['success' => true, 'msg' =>'Marks Updated!']);
+
+        } catch (\Exception $e) {
+            return response()->json(['success' => false, 'msg' => $e->getMessage()]);
+        }
+    }
+
     public function reviewExam(){
         $attempts = ExamAttempt::with(['user','exam'])->orderBy('id')->get();
 
