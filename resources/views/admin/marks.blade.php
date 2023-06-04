@@ -30,7 +30,6 @@
                     <td>
                         <button class="btn btn-primary editMarks" data-id="{{ $exam->id }}" data-marks="{{ $exam->marks }}" data-totalq="{{ count($exam->getQnaExam) }}" data-toggle="modal" data-target="#editMarksModal">Edit</button>
                     </td>
-                    <td>Edit Button</td>
                 </tr>
             @endforeach
         @else

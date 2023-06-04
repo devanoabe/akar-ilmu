@@ -70,7 +70,6 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function(){
     //Route Review
     Route::get('/review-exam', [AdminController::class, 'reviewExam'])->name('admin.review');
     Route::get('/get-reviewed-qna',[AdminController::class,'reviewQna'])->name('reviewQna');
-
     Route::post('/approved-qna',[AdminController::class, 'approvedQna'])->name('approvedQna');
 
 });
@@ -78,10 +77,10 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function(){
 
 //Route khusus untuk user
 Route::get('/welcome', [HomeController::class, 'welcome'])->name('home.welcome');
-
 Route::get('/dashboard', [UserController::class, 'loadDashboard'])->name('home.dashboard');;
 Route::get('/exam/{id}', [ExamController::class, 'loadExamDashboard']);
 Route::post('/exam-submit', [ExamController::class, 'examSubmit'])->name('examSubmit');
+Route::get('/results', [ExamController::class, 'resultDashboard'])->name('resultDashboard');
 
 
 

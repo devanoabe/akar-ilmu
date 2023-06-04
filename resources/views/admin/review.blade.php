@@ -104,13 +104,14 @@
                                 let answer = data[i]['answers']['answer'];
 
                                 html += `
-                                    <div class="row">
-                                        <div class="row">
-                                            <h6>Q(` + (i + 1) + `). ` + data[i]['question']['soal'] + `</h6>
-                                
-                                            <p>Answer: - ` + answer + ` ` + isCorrect + `</p>
-                                        </div>
+                                    <div style="padding-top: 15px" class="row">
+                                        <h6>Q(` + (i + 1) + `). ` + data[i]['question']['soal'] + `</h6>
                                     </div>
+                                    <div style="padding-top: 15px">
+                                        <p>Answer: - ` + answer + ` ` + isCorrect + `</p>
+                                    </div>
+                                            
+                                    
                                 `;
                             }
                         } else {
@@ -148,6 +149,7 @@
 
             });
         });
+        
     });
 </script>
 

@@ -72,8 +72,7 @@
             }, 1000);
         })
     });
-
-    </script>
+</script>
 
 
 <div class="modal fade" id="addExamModal" tabindex="-1" role="dialog" aria-labelledby="exampleModelCenterTitle" aria-hidden="true">
