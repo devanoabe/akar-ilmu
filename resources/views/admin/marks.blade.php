@@ -15,6 +15,7 @@
             <th>Exam Name</th>
             <th>Marks/Q</th>
             <th>Total Marks</th>
+            <th>Passing Marks</th>
             <th>Edit</th>
         </tr>
     </thead>
@@ -27,8 +28,9 @@
                     <td>{{ $exam->exam_name }}</td>
                     <td>{{ $exam->marks }}</td>
                     <td>{{ count($exam->getQnaExam) * $exam->marks }}</td>
+                    <td>{{ $exam->pass_marks }}</td>
                     <td>
-                        <button class="btn btn-primary editMarks" data-id="{{ $exam->id }}" data-marks="{{ $exam->marks }}" data-totalq="{{ count($exam->getQnaExam) }}" data-toggle="modal" data-target="#editMarksModal">Edit</button>
+                        <button class="btn btn-primary editMarks" data-id="{{ $exam->id }}" data-pass-marks="{{ $exam->pass_marks }}" data-marks="{{ $exam->marks }}" data-totalq="{{ count($exam->getQnaExam) }}" data-toggle="modal" data-target="#editMarksModal">Edit</button>
                     </td>
                 </tr>
             @endforeach
@@ -55,7 +57,7 @@
                 <div class="modal-body">
 
                     <div class="row">
-                        <div class="col-sm-3">
+                        <div class="col-sm-4">
                             <label>Marks/Q</label>
                         </div>
                         <div class="col-sm-6">
@@ -65,12 +67,23 @@
                             name="marks" placeholder="Enter Marks/Q" id="marks" required>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-sm-3">
+                    <div class="row mt-2">
+                        <div class="col-sm-4">
                             <label>Total Marks</label>
                         </div>
                         <div class="col-sm-6">
                             <input type="text" disabled placeholder="Total Marks" id="tmarks">
+                        </div>
+                    </div>
+
+                    <div class="row mt-2">
+                        <div class="col-sm-4">
+                            <label>Passing Marks</label>
+                        </div>
+                        <div class="col-sm-6">
+                        <input type="text" 
+                                onkeypress="return event.charCode >=48 && event.charCode<=57 || event.charCode == 46"
+                            name="pass_marks" placeholder="Enter Passing Marks" id="pass_marks" required>
                         </div>
                     </div>
 
@@ -99,6 +112,8 @@
 
                 totalQna = totalq;
 
+                $('#pass_marks').val($(this).attr('data-pass-marks'));
+
             });
 
             $('#marks').keyup(function(){
@@ -107,8 +122,35 @@
 
             });
 
+            $('#pass_marks').keyup(function(){
+
+                $('.pass-error').remove();
+                var tmarks = $('#tmarks').val();
+                var pmarks = $(this).val();
+
+                if(parseFloat(pmarks) >= parseFloat(tmarks)){
+                    $(this).parent().append('<p style="color:red;" class="pass-error">Passing Marks will be less than total marks!</p>');
+                    setTimeout(() => {
+                        $('.pass-error').remove();
+                    }, 2000);
+                }
+            });
+
             $('#editMarks').submit(function(event){
                 event.preventDefault();
+                
+                $('.pass-error').remove();
+                var tmarks = $('#tmarks').val();
+                var pmarks = $('#pass_marks').val();
+
+                if(parseFloat(pmarks) >= parseFloat(tmarks)){
+                    $('#pass_marks').parent().append('<p style="color:red;" class="pass-error">Passing Marks will be less than total marks!</p>');
+                    setTimeout(() => {
+                        $('.pass-error').remove();
+                    }, 2000);
+
+                    return false;
+                }
 
                 var formData = $(this).serialize();
 
