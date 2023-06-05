@@ -44,36 +44,72 @@
         <h2 style="color:red;" class="text-center">{{ $msg }} </h2>
     @endif
 
+    <script>
+        $(document).ready(function() {
+            var time = @json($time);
+            var startTime = sessionStorage.getItem('startTime');
+
+            if (!startTime) {
+                startTime = Date.now();
+                sessionStorage.setItem('startTime', startTime);
+            }
+
+            var elapsedTime = Math.floor((Date.now() - startTime) / 1000);
+            var totalSeconds = time[0] * 3600 + time[1] * 60 - elapsedTime;
+
+            if (totalSeconds <= 0) {
+                $('#exam_form').submit();
+            } else {
+                startTimer(totalSeconds);
+            }
+            });
+
+            function startTimer(totalSeconds) {
+            var hours = Math.floor(totalSeconds / 3600);
+            var minutes = Math.floor((totalSeconds % 3600) / 60);
+            var seconds = totalSeconds % 60;
+
+            updateTimer(hours, minutes, seconds);
+
+            var timer = setInterval(function() {
+                if (hours == 0 && minutes == 0 && seconds == 0) {
+                    clearInterval(timer);
+                    $('#exam_form').submit();
+                }
+
+                if (seconds <= 0) {
+                    minutes--;
+                    seconds = 60;
+                }
+                if (minutes <= 0 && hours != 0) {
+                    hours--;
+                    minutes = 59;
+                    seconds = 59;
+                }
+
+                updateTimer(hours, minutes, seconds);
+
+                seconds--;
+                }, 1000);
+            }
+
+            function updateTimer(hours, minutes, seconds) {
+                var tempHours = hours.toString().padStart(2, '0');
+                var tempMinutes = minutes.toString().padStart(2, '0');
+                var tempSeconds = seconds.toString().padStart(2, '0');
+
+                $('.time').text(tempHours + ':' + tempMinutes + ':' + tempSeconds + ' Left time');
+            }
+
+</script>
+
 <script>
     $(document).ready(function(){
         $('.select_ans').click(function() {
             var no = $(this).attr('data-id');
             $('#ans_'+no).val($(this).val());
         });
-        var time = @json($time);
-       $('.time').text(time[0]+':'+time[1]+':00 Left time');
-       
-       var seconds = 0;
-       var hours = time[0];
-       var minutes = time[1];
-       
-      setInterval(() => {
-    
-    if(hours == 0 && minutes == 0 && second == 0){
-    clearInterval(timer);
-    $('#exam_form').submit();
-    }
-    console.log(hours+" -:- "+minutes+" -:- " +seconds );
-    
-    if(seconds <= 0){ minutes--; seconds=60; } if(minutes <=0 && hours !=0){ hours--; minutes=59; seconds=59; } let
-        tempHours=hours.toString().length> 1 ? hours:'0'+hours;
-        let tempMinutes = minutes.toString().length > 1 ? minutes:'0'+minutes;
-        let tempSeconds = seconds.toString().length > 1 ? seconds:'0'+seconds;
-    
-        $('.time').text(tempHours+':'+tempMinutes+':'+tempSeconds+'Left time');
-        seconds--;
-    
-        }, 1000);
+
     });
 
     function isValid(){
