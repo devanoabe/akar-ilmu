@@ -17,7 +17,8 @@ class Question extends Model
      */
     protected $fillable = [
         // 'idSoal',  
-        'soal', 
+        'soal',
+        'explaination', 
         'created_at', 
         'created_at'
     ];

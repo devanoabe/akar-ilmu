@@ -58,6 +58,11 @@
                             <input type="text" class="w-100" name="question" placeholder="Enter Question" required>
                         </div>
                     </div>
+                    <div class="row mt-2">
+                        <div class="col">
+                            <textarea name="explaination" class="w-100" placeholder="Enter your explaination(Optional)"></textarea>
+                        </div>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <span class="error" style="color:red;"></span>
@@ -122,6 +127,11 @@
                         <div class="col">
                             <input type="hidden" name="question_id" id="question_id">
                             <input type="text" class="w-100" name="question" id="question" placeholder="Enter Question" required>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                           <textarea name="explaination" id="explaination" class="w-100" placeholder="Enter your explaination(Optional)"></textarea>
                         </div>
                     </div>
                 </div>
@@ -282,6 +292,7 @@
                     var qna = data.data[0];
                     $("#question_id").val(qna['id']);
                     $("#question").val(qna['soal']);
+                    $("#explaination").val(qna['explaination']);
                     $(".editAnswers").remove();
 
                     var html = '';
