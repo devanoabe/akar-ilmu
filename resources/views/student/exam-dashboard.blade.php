@@ -13,7 +13,7 @@
     @if($success == true)
 
         @if(count($qna) > 0)
-            <form action="{{ route('examSubmit') }}" method="POST" class="mb-5" onsubmit="return isValid()">
+            <form action="{{ route('examSubmit') }}" method="POST" class="mb-5" id="exam_form">
             @csrf
                 <input type="hidden" name="exam_id" value="{{ $exam[0]['id'] }}">
                 @foreach($qna as $data)
@@ -44,7 +44,7 @@
         <h2 style="color:red;" class="text-center">{{ $msg }} </h2>
     @endif
 
-    <script>
+<script>
         $(document).ready(function() {
             var time = @json($time);
             var startTime = sessionStorage.getItem('startTime');
@@ -58,6 +58,7 @@
             var totalSeconds = time[0] * 3600 + time[1] * 60 - elapsedTime;
 
             if (totalSeconds <= 0) {
+                clearInterval(timer);
                 $('#exam_form').submit();
             } else {
                 startTimer(totalSeconds);

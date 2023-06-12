@@ -50,11 +50,13 @@ class ExamController extends Controller
         $qcount = count($request->q);
         if($qcount > 0){
             for($i = 0; $i < $qcount; $i++){
-                ExamAnswer::insert([
-                    'attempt_id' => $attempt_id,
-                    'question_id' => $request->q[$i],
-                    'answer_id' => request()->input('ans_'.($i+1)),
-                ]);
+                if (!empty($request->input('ans_'.($i+1)))) {
+                    ExamAnswer::insert([
+                        'attempt_id' => $attempt_id,
+                        'question_id' => $request->q[$i],
+                        'answer_id' => request()->input('ans_'.($i+1)),
+                    ]);
+                }
             }
 
         }
@@ -68,6 +70,7 @@ class ExamController extends Controller
 
     public function reviewQna(Request $request){
         try{
+            
         $attemptData = ExamAnswer::where('attempt_id',$request->attempt_id)->with(['question','answers'])->get();
         
         return response()->json(['success'=>true,'msg'=>'Q&A Data','data'=>$attemptData]);
@@ -81,27 +84,5 @@ class ExamController extends Controller
 }
 
             
-        // }else{
-        //     // dd('aa');
-        //     return view('');
-        // }
-    
-
-    // $qnaExam = Exam::where('entrance_id',$id)->with('getQnaExam')->get();
-    // if(count($qnaExam) > 0){
-
-    //     if($qnaExam[0]['time'] == time('Y-m-d')){
-    //         return 'working';
-    //     }
-
-    //     else if($qnaExam[0]['date'] > date('Y-m-d')){
-    //         return view('student.exam-dashboard',['success'=>false,'msg'=>'This exam will be start on '.$qnaExam[0]['date'],'exam'=>$qnaExam]);
-    //     }
-    //     else{
-    //         return view('student.exam-dashboard',['success'=>false,'msg'=>'This exam will be on '.$qnaExam[0]['date'],'exam'=>$qnaExam]);
-
-    //     }
-    // }
-
     
 

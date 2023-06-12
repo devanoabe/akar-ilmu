@@ -99,7 +99,7 @@
                         </select>
                         <input class="w-100 mb-3" type="date" name="date" required min="@php echo date('Y-m-d'); @endphp">
                         <input class="w-100 mb-3" type="text" name="keterangan" placeholder="Keterangan" required>
-                        <input class="w-100 mb-3" type="time" name="time" required>
+                        <input class="w-100 mb-3" type="time" name="time" required min="00:00" step="60">
                     </div>
                 </div>
                 <div class="modal-footer">

@@ -6,8 +6,9 @@
         <thead>
             <th>#</th>
             <th>Exam</th>
-            <th>Result</th>
             <th>Status</th>
+            <th>Nilai</th>
+            <th>Review</th>
         </thead>
 
         <tbody>
@@ -22,12 +23,13 @@
                                 not declared
                             @else
                                 @if($attempt->marks >= $attempt->exam->pass_marks)
-                                    <span style="color: green">Passed</span>
+                                    <span style="color: green">Berhasil</span>
                                 @else
-                                    <span style="color: red">Failed</span>
+                                    <span style="color: red">Gagal</span>
                                 @endif
                             @endif
                         </td>
+                        <td>{{ $attempt->marks }}</td>
                         <td>
                             @if($attempt->status == 0)
                                 <span style="color: green">Pending</span>
