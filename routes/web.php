@@ -49,6 +49,7 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function(){
     Route::post('/delete-exam', [AdminController::class, 'deleteExam'])->name('deleteExam');
 
     //Route Soal
+    Route::post('CariSoal', [AdminController::class, 'cariSoal'])->name('cariSoal');
     Route::get('/qna-ans', [AdminController::class, 'qnaDashboard'])->name('admin.qna');
     Route::post('/add-qna-ans', [AdminController::class, 'addQna'])->name('addQna');
     Route::get('/get-qna-details', [AdminController::class, 'getQnaDetails'])->name('getQnaDetails');
@@ -81,7 +82,6 @@ Route::get('/dashboard', [UserController::class, 'loadDashboard'])->name('home.d
 Route::get('/exam/{id}', [ExamController::class, 'loadExamDashboard']);
 Route::post('/exam-submit', [ExamController::class, 'examSubmit'])->name('examSubmit');
 Route::get('/results', [ExamController::class, 'resultDashboard'])->name('resultDashboard');
-
 Route::get('/review-student-qna', [ExamController::class, 'reviewQna'])->name('resultStudentQna');
 
 

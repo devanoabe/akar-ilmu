@@ -46,11 +46,10 @@
     @include('layouts.sidebar')
 
     <!-- Content Wrapper. Contains page content -->
-    <div style="background-color: #ffffff; padding-left: 60px; padding-right: 60px; padding-top: 30px; padding-bottom: 30px" class="content-wrapper">
+    <div style="background-color: #f8f9fa; padding-left: 60px; padding-right: 60px;" class="content-wrapper">
         @yield('content')
     </div>
     <!-- /.content-wrapper -->
-    @include('layouts.footer')
 
     <!-- Control Sidebar -->
     <aside class="control-sidebar control-sidebar-dark">

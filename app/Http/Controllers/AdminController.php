@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
 use Illuminate\Http\Request;
 use App\Models\Question;
 use App\Models\Answer;
@@ -10,9 +11,21 @@ use App\Models\QnaExam;
 use App\Models\Exam;
 use App\Models\ExamAttempt;
 use App\Models\ExamAnswer;
+use App\Models\User;
+use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
 {
+    public function index()
+    {
+        $user = DB::table('users')->where('role', 0)->count();
+        $tryout = DB::table('exams')->count();
+        $soal = DB::table('questions')->count();
+        $mapel = DB::table('matapelajarans')->count();
+        $review = DB::table('exams_attempt')->where('status', 1)->count();
+        return view('admin.dashboard', compact('user', 'tryout', 'soal', 'mapel', 'review'));
+    }
+
     public function examDashboard()
     {   
         $subjects = MataPelajaran::all();// Mengambil semua isi tabel
@@ -79,12 +92,12 @@ class AdminController extends Controller
         };
     }
 
-
-
-    public function index()
+    public function cariSoal(Request $request)
     {
-        return view('layouts.app2');
-    }
+        $cari = $request->cari;
+        $questions = Question::where('soal', 'like', '%'.$cari.'%')->paginate(5);
+        return view('qna.index', compact('questions'));
+    } 
 
     public function qnaDashboard()
     {

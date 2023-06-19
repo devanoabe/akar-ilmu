@@ -13,7 +13,6 @@ use Carbon\Carbon;
 
 class ExamController extends Controller
 {
-    //
     public function loadExamDashboard($id){
         
         $qnaExam = Exam::where('entrance_id',$id)->with('getQnaExam')->get();

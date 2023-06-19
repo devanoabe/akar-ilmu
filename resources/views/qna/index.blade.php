@@ -1,42 +1,69 @@
 @extends('layouts.app2')
 @section('content')
-<h2 class="mb-4">Soal</h2>
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addQnaModal">
-    Add Q&A
-</button>
 
-<table class="table">
-    <thead>
-        <th>#</th>
-        <th>Question</th>
-        <th>Answer</th>
-        <th>Edit</th>
-        <th>Delete</th>
-    </thead>
-    <tbody>
-        @if(count($questions)>0)
-            @foreach($questions as $q)
-            <tr>
-                <td>{{$q->id}}</td>
-                <td>{{$q->soal}}</td>
-                <td>
-                    <a href="" class="ansButton" data-id="{{$q->id}}" data-toggle="modal" data-target="#showAnsModal">See Answer</a>
-                </td>
-                <td>
-                    <button class="btn btn-info editButton" data-id="{{$q->id}}" data-toggle="modal" data-target="#editQnaModal">Edit</button>
-                </td>
-                <td>
-                    <button class="btn btn-danger deleteButton" data-id="{{$q->id}}" data-toggle="modal" data-target="#deleteQnaModal">Delete</button>
-                </td>
-            </tr>
-            @endforeach 
-        @else
-        <tr>
-            <td colspan="3">Question & Answer belum ada</td>
-        </tr>
-        @endif
-    </tbody>
-</table>
+<div class="row">
+    <div class="card col-8 p-4">
+        <h2 style="font-weight: bolder"class="mb-4">Soal</h2>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addQnaModal">
+            Add Q&A
+        </button>
+
+        <table class="table">
+            <thead>
+                <th>#</th>
+                <th>Question</th>
+                <th>Answer</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </thead>
+            <tbody>
+                @if(count($questions)>0)
+                    @foreach($questions as $q)
+                    <tr>
+                        <td>{{$q->id}}</td>
+                        <td>{{$q->soal}}</td>
+                        <td>
+                            <a href="" class="ansButton" data-id="{{$q->id}}" data-toggle="modal" data-target="#showAnsModal">See Answer</a>
+                        </td>
+                        <td>
+                            <button class="btn btn-info editButton" data-id="{{$q->id}}" data-toggle="modal" data-target="#editQnaModal">Edit</button>
+                        </td>
+                        <td>
+                            <button class="btn btn-danger deleteButton" data-id="{{$q->id}}" data-toggle="modal" data-target="#deleteQnaModal">Delete</button>
+                        </td>
+                    </tr>
+                    @endforeach 
+                @else
+                <tr>
+                    <td colspan="3">Question & Answer belum ada</td>
+                </tr>
+                @endif
+            </tbody>
+        </table>
+    </div>
+
+    <div class="col-4 pl-4">
+        <div style="border-radius: 28px" class="card p-4">
+            <h5 style="font-weight: bolder">Cari Soal</h5>
+            <form action="{{ route('cariSoal') }}" method="POST">
+            @csrf
+                <div class="d-flex flex-row">
+                    <input style="background-color: #f8f9fa;" type="text" value="{{ (request()->cari) ? request()->cari : '' }}" name="cari" class="form-control">
+                    <button style="background-color: black; border: none" type="submit" class="btn btn-primary ml-4">Cari</button>
+                </div>
+            </form>
+            <hr>
+            <div class="row pl-3">
+                <div class="icon pr-3">
+                    <i class="fa fa-users" aria-hidden="true"></i>
+                </div>
+                <h5 style="margin-top: -7px"></h5>    
+            </div>
+            <p>* Jumlah Mata Pelajaran yang tersimpan</p>
+        </div>
+    </div>
+</div>
+
  
 <div class="modal fade" id="addQnaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModelCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
