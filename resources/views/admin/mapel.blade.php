@@ -82,8 +82,7 @@
             <div class="row pl-3">
                 <div class="icon pr-3">
                     <i class="fa fa-users" aria-hidden="true"></i>
-                </div>
-                <h5 style="margin-top: -7px">{{ $user }}</h5>    
+                </div>   
             </div>
             <p>* Jumlah Mata Pelajaran yang tersimpan</p>
         </div>

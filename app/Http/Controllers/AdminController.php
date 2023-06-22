@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Pagination\Paginator;
 use Auth;
 use Illuminate\Http\Request;
 use App\Models\Question;
@@ -101,8 +101,9 @@ class AdminController extends Controller
 
     public function qnaDashboard()
     {
+        $soal = DB::table('questions')->count();
         $questions = Question::with('answers')->get();
-        return view('qna.index', compact('questions'));
+        return view('qna.index', compact('questions', 'soal'));
     }
 
     //add QnA
@@ -309,8 +310,7 @@ class AdminController extends Controller
     }
 
     public function reviewExam(){
-        $attempts = ExamAttempt::with(['user','exam'])->orderBy('id')->get();
-
+        $attempts = ExamAttempt::with(['user','exam'])->orderBy('id')->paginate(6);
         return view('admin.review', compact('attempts'));
     }
 

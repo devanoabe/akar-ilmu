@@ -1,20 +1,37 @@
 @extends('layouts.app2')
+
+<head>
+    <style>
+        .table-borderless > tbody > tr > td,
+        .table-borderless > tbody > tr > th,
+        .table-borderless > tfoot > tr > td,
+        .table-borderless > tfoot > tr > th,
+        .table-borderless > thead > tr > td,
+        .table-borderless > thead > tr > th {
+            padding: 20px;
+            color: black;
+            border-bottom: 1px solid #ebedef;
+        }
+    </style>
+</head>
+
 @section('content')
 
 <div class="row">
-    <div class="card col-8 p-4">
+    <div style="border-radius: 28px" class="card col-8 p-4">
         <h2 style="font-weight: bolder"class="mb-4">Soal</h2>
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addQnaModal">
-            Add Q&A
-        </button>
+        <div class="d-flex flex-row justify-content-end mb-2">
+            <button style="background-color: black; border: none" type="button" class="btn btn-primary" data-toggle="modal" data-target="#addQnaModal">
+                Tambah Soal & Jawaban
+            </button>
+        </div>
 
-        <table class="table">
+        <table class="table-borderless">
             <thead>
-                <th>#</th>
-                <th>Question</th>
-                <th>Answer</th>
-                <th>Edit</th>
-                <th>Delete</th>
+                <th>Id</th>
+                <th>Soal</th>
+                <th>Jawaban</th>
+                <th style="text-align: right">Action</th>
             </thead>
             <tbody>
                 @if(count($questions)>0)
@@ -25,11 +42,13 @@
                         <td>
                             <a href="" class="ansButton" data-id="{{$q->id}}" data-toggle="modal" data-target="#showAnsModal">See Answer</a>
                         </td>
-                        <td>
-                            <button class="btn btn-info editButton" data-id="{{$q->id}}" data-toggle="modal" data-target="#editQnaModal">Edit</button>
-                        </td>
-                        <td>
-                            <button class="btn btn-danger deleteButton" data-id="{{$q->id}}" data-toggle="modal" data-target="#deleteQnaModal">Delete</button>
+                        <td style="text-align: right">
+                            <button class="btn editButton" data-id="{{$q->id}}" data-toggle="modal" data-target="#editQnaModal">
+                                <i class="fa fa-align-justify" aria-hidden="true"></i>
+                            </button>
+                            <button class="btn deleteButton" data-id="{{$q->id}}" data-toggle="modal" data-target="#deleteQnaModal">
+                                <i class="fa fa-trash" aria-hidden="true"></i>
+                            </button>
                         </td>
                     </tr>
                     @endforeach 
@@ -57,9 +76,8 @@
                 <div class="icon pr-3">
                     <i class="fa fa-users" aria-hidden="true"></i>
                 </div>
-                <h5 style="margin-top: -7px"></h5>    
             </div>
-            <p>* Jumlah Mata Pelajaran yang tersimpan</p>
+            <p>* Jumlah soal yang tersimpan</p>
         </div>
     </div>
 </div>
@@ -69,9 +87,9 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Add QnA</h5>
+                <h5 class="modal-title" id="exampleModalLongTitle">Tambah Soal</h5>
 
-                <button id="addAnswer" class="ml-5 btn btn-info">Add Answer</button>
+                <button style="background-color: black; border: none" id="addAnswer" class="ml-5 btn btn-info">Tambah Pilihan</button>
 
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -79,17 +97,20 @@
             </div>
             <form id="addQna">
                 @csrf
-                <div class="modal-body addModalAnswers">
+                <div class="modal-body addModalAnswers p-4">
                     <div class="row">
-                        <div class="col">
-                            <input type="text" class="w-100" name="question" placeholder="Enter Question" required>
+                        <div class="col">   
+                            <h6>Masukan Soal : </h6>
+                            <input type="text" class="w-100" name="question" placeholder="Tambah Soal" required>
                         </div>
                     </div>
-                    <div class="row mt-2">
+                    <div class="row mt-4 mb-3">
                         <div class="col">
-                            <textarea name="explaination" class="w-100" placeholder="Enter your explaination(Optional)"></textarea>
+                            <h6>Masukan Penjelasan : </h6>
+                            <textarea name="explaination" class="w-100" placeholder="Tambah Penjelasan(Optional)"></textarea>
                         </div>
                     </div>
+                    <h6>Masukan Jawaban (Klik Tambah):</h6>
                 </div>
                 <div class="modal-footer">
                     <span class="error" style="color:red;"></span>
@@ -106,7 +127,7 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Show Answers</h5>
+                <h5 class="modal-title" id="exampleModalLongTitle">Jawaban</h5>
 
                 <button type="button" class="close" data-dissmis="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -117,11 +138,10 @@
                     <table class="table">
                         <thead>
                             <th>#</th>
-                            <th>Answer</th>
-                            <th>Is Correct</th>
+                            <th>Jawaban</th>
+                            <th>Benar</th>
                         </thead>
                         <tbody class="showAnswers">
-
                         </tbody>
                     </table>
                 </div>
@@ -133,15 +153,13 @@
     </div>
 </div>
 
-
-
 <div class="modal fade" id="editQnaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModelCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLongTitle">Update QnA</h5>
 
-                <button id="addEditAnswer" class="ml-5 btn btn-info">Add Answer</button>
+                <button style="background-color: black; border: none" id="addEditAnswer" class="ml-5 btn btn-info">Tambah Pilihan</button>
 
                 <button type="button" class="close" data-dissmis="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -149,18 +167,21 @@
             </div>
             <form id="editQna">
                 @csrf
-                <div class="modal-body editModalAnswers">
+                <div class="modal-body editModalAnswers  p-4">
                     <div class="row">
                         <div class="col">
                             <input type="hidden" name="question_id" id="question_id">
+                            <h6>Soal : </h6>
                             <input type="text" class="w-100" name="question" id="question" placeholder="Enter Question" required>
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row mt-3 mb-3">
                         <div class="col">
+                            <h6>Penjelasan : </h6>
                            <textarea name="explaination" id="explaination" class="w-100" placeholder="Enter your explaination(Optional)"></textarea>
                         </div>
                     </div>
+                    <h6>Jawaban : </h6>
                 </div>
                 <div class="modal-footer">
                     <span class="editError" style="color:red;"></span>
@@ -255,7 +276,7 @@
                 $(".error").text("");
             },2000);
         } else {
-            var html ='<div class="row mt-3 answers"><input type="radio" name="is_correct" class="is_correct"><div class="col"><input type="text" class="w-100" name="answers[]" placeholder="Enter Answer" required></div><button class="btn btn-danger removeButton">Remove</button></div>';
+            var html ='<div class="row mt-2 answers"><input type="radio" name="is_correct" class="is_correct"><div class="col"><input type="text" class="w-100" name="answers[]" placeholder="Enter Answer" required></div><button class="btn btn-danger removeButton">Remove</button></div>';
 
             $(".addModalAnswers").append(html);
         }
@@ -271,19 +292,15 @@
         var html = '';
 
         for(let i=0; i<questions.length;i++){
-
             if(questions[i]['id'] == qid){
                 var answersLength = questions[i]['answers'].length;
                 for(let j =0; j < answersLength; j++){
-                    let is_correct = 'No';
-                    if(questions[i]['answers'][j]['is_correct'] == 1){
-                        is_correct = 'Yes';
-                    }
-                    html += '<tr><td>'+(j+1)+'</td><td>'+questions[i]['answers'][j]['answer']+'</td><td>'+is_correct+'</td></tr>';
-                
+                    let is_correct = questions[i]['answers'][j]['is_correct'];
+                    let color = is_correct == 1 ? 'green' : 'red';
+                    let is_correct_text = is_correct == 1 ? 'Yes' : 'No';
+                    html += '<tr style="color: '+color+';"><td>'+(j+1)+'</td><td>'+questions[i]['answers'][j]['answer']+'</td><td>'+is_correct_text+'</td></tr>';
                 }
                 break;
-
             }
         }
 

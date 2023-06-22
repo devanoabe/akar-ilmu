@@ -3,28 +3,30 @@
 @extends('layouts.app')
 
 @section('content')
+
     @php
         $time = explode(':',$exam[0]['time']);
     @endphp
     {{-- <p style="color:black">Welcome, {{ Auth::user()->name }}</p> --}}
-    <p class="text-center">Tryout  :  {{ $exam[0]['exam_name'] }}</p>
-    <h4 class="text-righ time">{{ $exam[0]['time'] }}</h4>
+    <p class="text-center" style = "font-size: 50px; font-family: 'Montserraat';">{{ $exam[0]['exam_name'] }}</p>
+    <h4 class="text-righ time" style = "padding-left: 300px; padding-right: 300px;">{{ $exam[0]['time'] }}</h4>
     @php $qcount = 1; @endphp
     @if($success == true)
 
         @if(count($qna) > 0)
-            <form action="{{ route('examSubmit') }}" method="POST" class="mb-5" id="exam_form">
+            <form action="{{ route('examSubmit') }}" method="POST" class="mb-5" id="exam_form" style = "padding-left: 300px; padding-right: 300px; ">
             @csrf
                 <input type="hidden" name="exam_id" value="{{ $exam[0]['id'] }}">
                 @foreach($qna as $data)
-                    <div>
+                    <div >
                         <h5>Q. {{ $qcount++ }}. {{ $data['question'][0]['soal'] }}</h5>
                         <input type="hidden" name="q[]" value="{{ $data['question'][0]['id'] }}">
                         <input type="hidden" name="ans_{{$qcount-1}}" id="ans_{{$qcount-1}}">
                         @php $acount = 1; @endphp
                         @foreach($data['question'][0]['answers'] as $answer)
-                            <p><b>{{ $acount++ }}. </b>{{ $answer['answer'] }}
-                                <input type="radio" name="radio_{{$qcount-1}}" data-id="{{$qcount-1}}" class="select_ans" value="{{ $answer['id'] }}">
+                            <p>
+                                <input type="radio" name="radio_{{$qcount-1}}" data-id="{{$qcount-1}}" class="select_ans" value="{{ $answer['id'] }}" >
+                                {{ $answer['answer'] }}
                             </p>
                         @endforeach
 
@@ -43,7 +45,7 @@
         @else
         <h2 style="color:red;" class="text-center">{{ $msg }} </h2>
     @endif
-
+    </div>
 <script>
         $(document).ready(function() {
             var time = @json($time);

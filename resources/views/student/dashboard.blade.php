@@ -1,37 +1,49 @@
-@extends('layouts.app')
+@extends('layouts.app3')
+
+<head>
+    <link rel="stylesheet" href="{{ asset('css/dbs.css') }}">
+</head>
 
 @section('content')
-<h2>Exams</h2>
-    <table class="table">
-        <thead>
-            <th>#</th>
-            <th>Exam Name</th>
-            <th>Mata Pelajaran</th>
-            <th>Time</th>
-            <th>Keterangan</th>
-        </thead>
 
-        <tbody>
-            @if(count($exams) > 0)
-                @php $count =1; @endphp
-                @foreach($exams as $exam)
-                    <tr>
-                        <td>{{ $count++ }}</td>
-                        <td>{{ $exam->exam_name }}</td>
-                        <td>{{ $exam->subjects[0]['namaMapel'] }}</td>
-                        <td>{{ $exam->time }}</td>
-                        <td>{{ $exam->keterangan }} Time</td>
-                        <td><a href="#" data-code="{{ $exam->entrance_id }}" class="copy"><i class="fa fa-copy"></i></a></td>
-                    </tr>
-                @endforeach
-            @else
+<div class="row">
+    <div class="col-12">
+        <h3>Tryouts</h3>
+    </div>
+</div>
 
-                <tr>
-                    <td colspan="8">No Exams Available</td>
-                </tr>
-            @endif
-        </tbody>
-    </table>
+
+<div class="main">
+  <ul class="cards">
+    @if(count($exams) > 0)
+    @php $count =1; @endphp
+    @foreach($exams as $exam)
+    <li class="cards_item">
+      <div class="card">
+        <div class="card_image">
+            <img src="{{ asset('images/coba.png') }}">
+        </div>
+        <div class="card_content">
+          <h2 class="card_title">{{ $exam->exam_name }}</h2>
+          <div class="card_text">
+            <p>{{ $exam->subjects[0]['namaMapel'] }}</p>
+            <p>{{ $exam->time }}</p>
+            <p>{{ $exam->keterangan }}</p>
+            <p><a href="#" data-code="{{ $exam->entrance_id }}" class="copy"><i class="fa fa-copy"></i></a></p>
+          </div>
+        </div>
+      </div>
+    </li>
+    @endforeach
+    @else
+        <tr>
+            <td colspan="8">No Exams Available</td>
+        </tr>
+    @endif
+  </ul>
+</div>
+
+
 
 <script>
     $(document).ready(function(){

@@ -1,4 +1,26 @@
 @extends('layouts.app2')
+
+<head>
+    <style>
+        .table-borderless > tbody > tr > td,
+        .table-borderless > tbody > tr > th,
+        .table-borderless > tfoot > tr > td,
+        .table-borderless > tfoot > tr > th,
+        .table-borderless > thead > tr > td,
+        .table-borderless > thead > tr > th {
+            padding: 20px;
+            color: black;
+            border-bottom: 1px solid #ebedef;
+        }
+
+        tbody{
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+@section('content')
+
 @section('content')
 <div class="row">
     <div class="col-lg-12 margin-tb">
@@ -8,7 +30,7 @@
     </div>
 </div>
 
-<table class="table table-bordered">
+<table class="table table-borderless">
     <thead>
         <tr>
             <th>#</th>
@@ -50,6 +72,9 @@
         @endif
     </tbody>
 </table>
+<div style="padding-left: 50px; padding-top: 20px">
+    {{ $attempts->links() }}
+</div>
 
 <!-- Modal -->
 <div class="modal fade" id="reviewExamModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -75,6 +100,7 @@
     </div>
   </div>
 </div>
+
 
 
 <script>

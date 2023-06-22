@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.app3')
 
 @section('content')
 <h2>Results</h2>
@@ -6,9 +6,9 @@
         <thead>
             <th>#</th>
             <th>Exam</th>
-            <th>Status</th>
+            <th>Result</th>
             <th>Nilai</th>
-            <th>Review</th>
+            <th>Status</th>
         </thead>
 
         <tbody>
@@ -23,13 +23,15 @@
                                 not declared
                             @else
                                 @if($attempt->marks >= $attempt->exam->pass_marks)
-                                    <span style="color: green">Berhasil</span>
+                                    <span style="color: green">Lulus</span>
                                 @else
-                                    <span style="color: red">Gagal</span>
+                                    <span style="color: red"><p>Tidak Lulus</p></span>
                                 @endif
                             @endif
                         </td>
-                        <td>{{ $attempt->marks }}</td>
+                        <td>
+                            <span>{{ $attempt->marks }}</span>
+                        </td>
                         <td>
                             @if($attempt->status == 0)
                                 <span style="color: green">Pending</span>

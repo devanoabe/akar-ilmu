@@ -18,9 +18,9 @@ class MataPelajaranController extends Controller
 
     public function index()
     {       
-        $user = DB::table('users')->count();
+        $map = DB::table('matapelajarans')->count();
         $mapel = MataPelajaran::all(); // Mengambil semua isi tabel
-        return view('admin.mapel', compact('mapel','user'));
+        return view('admin.mapel', compact('mapel','map'));
     }
 
     public function create()

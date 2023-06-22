@@ -67,7 +67,6 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function(){
     Route::get('/marks', [AdminController::class, 'loadMarks'])->name('admin.marks');
     Route::post('/update-marks', [AdminController::class, 'updateMarks'])->name('updateMarks');
 
-
     //Route Review
     Route::get('/review-exam', [AdminController::class, 'reviewExam'])->name('admin.review');
     Route::get('/get-reviewed-qna',[AdminController::class,'reviewQna'])->name('reviewQna');
