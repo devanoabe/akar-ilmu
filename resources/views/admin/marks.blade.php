@@ -120,6 +120,10 @@
     </div> 
 </div>
 
+<div class="pagination">
+        {{ $exams->links() }}
+    </div>
+
 
     <script>
         $(document).ready(function(){

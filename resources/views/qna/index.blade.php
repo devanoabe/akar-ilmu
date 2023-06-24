@@ -1,19 +1,6 @@
 @extends('layouts.app2')
 
-<head>
-    <style>
-        .table-borderless > tbody > tr > td,
-        .table-borderless > tbody > tr > th,
-        .table-borderless > tfoot > tr > td,
-        .table-borderless > tfoot > tr > th,
-        .table-borderless > thead > tr > td,
-        .table-borderless > thead > tr > th {
-            padding: 20px;
-            color: black;
-            border-bottom: 1px solid #ebedef;
-        }
-    </style>
-</head>
+
 
 @section('content')
 
@@ -26,10 +13,10 @@
             </button>
         </div>
 
-        <table class="table-borderless">
-            <thead>
+        <table class="table table-borderless">
+            <thead style="font-weight: bolder; color: black">
                 <th>Id</th>
-                <th>Soal</th>
+                <th style="width: 480px">Soal</th>
                 <th>Jawaban</th>
                 <th style="text-align: right">Action</th>
             </thead>

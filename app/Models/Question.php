@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Question extends Model
 {
     use HasFactory;
-    protected $table = 'questions';
+    public $table = 'questions';
 
     /**
      * The attributes that are mass assignable.
@@ -24,7 +24,7 @@ class Question extends Model
     ];
 
     public function answers(){
-        return $this->hasMany(Answer::class, 'questions_id','id');
+        return $this->hasMany(Answer::class, 'questions_id', 'id');
     }
 
 }

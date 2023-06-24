@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Exam;
+use App\Models\ExamAttempt;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -84,9 +85,19 @@ class UserController extends Controller
 
         return response()->json(compact('user'));
     }
+
     public function loadDashboard()
     {
+        $tryout = Exam::count();
+        $highestScore = auth()->user()->examAttempts()->max('marks');
+        $userAttempts = auth()->user()->examAttempts()->count();
         $exams = Exam::with('subjects')->orderBy('exam_name')->get();
-        return view('student.dashboard',['exams'=>$exams]);
+        $passedAttempts = auth()->user()->examAttempts()->where('marks', '>=', function ($query) {
+            $query->select('pass_marks')
+                  ->from('exams')
+                  ->whereColumn('exam_id', 'exams.id');
+        })->count();
+        return view('student.dashboard', ['exams' => $exams, 'tryout' => $tryout, 'userAttempts' => $userAttempts, 'highestScore' => $highestScore,
+        'passedAttempts' => $passedAttempts]);
     }
 }

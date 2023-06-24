@@ -81,7 +81,7 @@
         <!-- /.navbar -->
 
         <!-- Content Wrapper. Contains page content -->
-        <div style="background-color: #ffffff; padding-left: 60px; padding-right: 60px; padding-top: 30px; padding-bottom: 30px" class="">
+        <div style="background-color: #f7f7f7; padding-left: 60px; padding-right: 60px; padding-top: 30px; padding-bottom: 30px" class="">
             @yield('content')
         </div>
         <!-- /.content-wrapper -->

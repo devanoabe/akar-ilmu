@@ -37,7 +37,7 @@
 </head>
 <body class="hold-transition sidebar-mini">
 <!-- Site wrapper -->
-<div class="wrapper">
+<div style="background-color: #f8f9fa;" class="wrapper">
     <!-- Navbar -->
     @include('layouts.header')
     <!-- /.navbar -->

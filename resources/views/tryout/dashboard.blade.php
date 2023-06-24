@@ -31,7 +31,7 @@
     <table class="table table-borderless">
         <thead>
             <th>Id</th>
-            <th width=260px>Nama Tryout</th>
+            <th width=230px>Nama Tryout</th>
             <th>Keterangan</th>
             <th>Time</th>
             <th>Tambah</th>
@@ -79,6 +79,10 @@
             @endif
         </tbody>
     </table>
+</div>
+
+<div class="pagination">
+    {{ $exams->links() }}
 </div>
 
 <script>
@@ -183,6 +187,7 @@
         </div>
     </div>
 </div>
+
 
 <div class="modal fade" id="deleteExamModal" tabindex="-1" role="dialog" aria-labelledby="exampleModelCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">

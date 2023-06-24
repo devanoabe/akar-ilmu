@@ -28,9 +28,9 @@ class AdminController extends Controller
 
     public function examDashboard()
     {   
-        $subjects = MataPelajaran::all();// Mengambil semua isi tabel
-        $exams = Exam::with('subjects')->get();
-        return view('tryout.dashboard',['subjects'=>$subjects, 'exams'=>$exams]);
+        $subjects = MataPelajaran::all();
+        $exams = Exam::with('subjects')->paginate(5);
+        return view('tryout.dashboard', ['subjects' => $subjects, 'exams' => $exams]);
     }
 
     //add Exam
@@ -290,7 +290,7 @@ class AdminController extends Controller
 
     public function loadMarks()
     {
-        $exams = Exam::with('getQnaExam')->get();
+        $exams = Exam::with('getQnaExam')->paginate(5);
         return view('admin.marks', compact('exams'));
     }
 

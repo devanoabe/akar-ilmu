@@ -1,7 +1,77 @@
 @extends('layouts.app3')
+<head>
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=Alice&family=Nanum+Gothic&family=Roboto+Flex&display=swap');
+    </style>
+    <link rel="stylesheet" href="{{ asset('css/rsl.css') }}">
+</head>
 
 @section('content')
-<h2>Results</h2>
+<div class="row">
+    <div style="border-radius: 28px" class="card col-12 p-4">
+            <h3 class="d-flex flex-row-reverse judul">
+            <i style="color: orange" class="fa fa-circle" aria-hidden="true"></i>
+            <i style="color: green" class="fa fa-circle ml-2" aria-hidden="true"></i>
+            Result
+            </h3>
+            <hr style="border-color: #858180;"  class="sidebar-divider my-3">
+        <div class="row">
+            <div class="col-3">
+                <div class="image-prof">
+                    <img src="{{ asset('images/faces/2.jpg') }}">
+                </div> 
+            </div>
+            <div class="col-9 kanan">
+                <h4>Hi, {{ Auth::user()->name }}!</h4>
+                <h6><i class="fa fa-envelope mr-3" aria-hidden="true"></i>{{ Auth::user()->email }}</h6>
+                <h6><i class="fa fa-phone mr-3" aria-hidden="true"></i>{{ Auth::user()->telepon }}</h6>
+                <h6><i class="fa fa-user mr-3" aria-hidden="true"></i>{{ Auth::user()->username }}</h6>
+                <div class="row pt-3">
+                    <div class="col-3 icon">
+                        <i style="background-color: #008374; color: white" class="fa fa-cube" aria-hidden="true"></i>
+                        <span>
+                            {{ $tryout }}
+                        </span>
+                        <br>
+                        <h3>
+                            Total Tryout
+                        </h3>
+                    </div>
+                    <div class="col-3 icon">
+                        <i style="background-color: #fef7ec; color: #fcb03b" class="fa fa-check-square" aria-hidden="true"></i>
+                        <span>
+                            {{ $userAttempts }}
+                        </span>
+                        <br>
+                        <h3>
+                            Total Selesai
+                        </h3>
+                    </div>
+                    <div class="col-3 icon">
+                        <i style="background-color: #f85a40; color: white" class="fa fa-book" aria-hidden="true"></i>
+                        <span>
+                            {{ $passedAttempts }}
+                        </span>
+                        <br>
+                        <h3>
+                            Total Lulus 
+                        </h3>
+                    </div>
+                    <div class="col-3 icon">
+                        <i style="background-color: #eaf9f1; color: #21b573" class="fa fa-check-square" aria-hidden="true"></i>
+                        <span>
+                            {{ $highestScore }}
+                        </span>
+                        <br>
+                        <h3>
+                            Nilai Tertinggi
+                        </h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
     <table class="table">
         <thead>
             <th>#</th>

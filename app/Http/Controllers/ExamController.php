@@ -64,7 +64,15 @@ class ExamController extends Controller
 
     public function resultDashboard(){
         $attempts = ExamAttempt::where('user_id', Auth()->user()->id)->with('exam')->orderBy('updated_at')->get();
-        return view('student.result', compact('attempts'));
+        $tryout = Exam::count();
+        $highestScore = auth()->user()->examAttempts()->max('marks');
+        $userAttempts = auth()->user()->examAttempts()->count();
+        $passedAttempts = auth()->user()->examAttempts()->where('marks', '>=', function ($query) {
+            $query->select('pass_marks')
+                  ->from('exams')
+                  ->whereColumn('exam_id', 'exams.id');
+        })->count();
+        return view('student.result', compact('attempts','tryout','highestScore', 'userAttempts', 'passedAttempts'));
     }
 
     public function reviewQna(Request $request){
