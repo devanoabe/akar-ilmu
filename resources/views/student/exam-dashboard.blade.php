@@ -1,5 +1,13 @@
-{{-- <h1>aaa</h1> --}}
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{{ asset('css/qna.css') }}">
+</head>
+<body>
+    
 @extends('layouts.app')
 
 @section('content')
@@ -7,14 +15,25 @@
     @php
         $time = explode(':',$exam[0]['time']);
     @endphp
-    {{-- <p style="color:black">Welcome, {{ Auth::user()->name }}</p> --}}
-    <p class="text-center" style = "font-size: 50px; font-family: 'Montserraat';">{{ $exam[0]['exam_name'] }}</p>
-    <h4 class="text-righ time" style = "padding-left: 300px; padding-right: 300px;">{{ $exam[0]['time'] }}</h4>
+    <div style = "margin-left: 200px; margin-right: 200px;" class="card">
+        <div class="row">
+            <div class="col-3">
+                <div class="image-prof">
+                    <img src="{{ asset('images/sl.png') }}">
+                </div>
+            </div>
+            <div class="col-9">
+                <h6>Tryout</h6>
+                <p class="text-left" style = "font-size: 50px; font-family: 'Montserraat';">{{ $exam[0]['exam_name'] }}</p>
+                <h4 class="text-left time">{{ $exam[0]['time'] }}</h4>
+            </div>
+        </div>
+    </div>
     @php $qcount = 1; @endphp
     @if($success == true)
 
         @if(count($qna) > 0)
-            <form action="{{ route('examSubmit') }}" method="POST" class="mb-5" id="exam_form" style = "padding-left: 300px; padding-right: 300px; ">
+            <form action="{{ route('examSubmit') }}" method="POST" class="mb-5" id="exam_form" style = "padding-left: 200px; padding-right: 200px; ">
             @csrf
                 <input type="hidden" name="exam_id" value="{{ $exam[0]['id'] }}">
                 @foreach($qna as $data)
@@ -46,6 +65,9 @@
         <h2 style="color:red;" class="text-center">{{ $msg }} </h2>
     @endif
     </div>
+</body>
+</html>
+
 <script>
         $(document).ready(function() {
             var time = @json($time);

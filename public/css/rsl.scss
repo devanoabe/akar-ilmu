@@ -1,0 +1,139 @@
+.judul{
+    font-weight: bold;
+}
+
+.judul i{
+    font-size: 12px;
+    padding: 2px;
+}
+
+.image-prof img {
+    width: 100%;
+    height: auto;
+    border-radius: 28px;
+    object-fit: cover;
+  }
+
+  .kanan h4{
+    font-size: 60px;
+    font-weight: bold;
+  }
+
+  .icon i{
+    font-size: 42px;
+    background-color: white;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 9px 9px 9px -2px rgba(0,0,0,0.12);
+    -webkit-box-shadow: 9px 9px 9px -2px rgba(0,0,0,0.12);
+    -moz-box-shadow: 9px 9px 9px -2px rgba(0,0,0,0.12);
+  }
+
+  .icon{
+    text-align: left;
+  }
+
+  .icon span{
+    font-size: 34px;
+    margin-left: 16px;
+    font-weight: bolder;
+    color: black;
+  }
+
+  .icon h3{
+    color: #808080;
+    font-weight: lighter;
+    font-size: 16px;
+    margin-left: 110px;
+    margin-top: -23px;
+  }
+
+  .box {
+    background: white;
+    border-radius: 20px;
+    display: grid;
+    grid-template-columns: 64px 1fr;
+    position: relative;
+  }
+  
+  .box-icon {
+    display: grid;
+    place-items: center;
+  }
+  
+  .box-label {
+    height: 64px;
+    display: flex;
+    align-items: center;
+    padding-left: 16px;
+    font-size: 16px;
+    font-weight: bolder;
+    color: black;
+  }
+  
+  .box-title {
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    font-size: 14px;
+    padding-top: 16px;
+    text-align: center;
+    letter-spacing: 0.125em;
+  }
+  
+  .box-image {
+    width: 263px;
+    height: 320px;
+    border-radius: 18px 0 18px 0;
+    overflow: hidden;
+    background-color: #deffe149;
+  }
+
+  .box-image img{
+    width: 75%;
+    height: auto;
+    object-fit: cover;
+  }
+  
+  .studio-button {
+    position: absolute;
+    bottom: 16px;
+    right: 16px;
+    display: flex;
+    align-items: center;
+    background: #008374;
+    color: white;
+    padding: 8px 10px;
+    border-radius: 50px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+    transition: 0.35s ease all;
+    overflow: hidden;
+    max-width: 42px; /* icon size */
+  }
+  
+  .studio-button-icon {
+    position: relative;
+    top: 1px;
+  }
+  
+  .studio-button-label {
+    text-transform: uppercase;
+    white-space: nowrap;
+    padding: 0 8px;
+    opacity: 0;
+    transform: translateX(10px);
+    transition: 0.25s ease all;
+  }
+  
+  .box:hover {
+    .studio-button {
+      max-width: 100%;
+    }
+    .studio-button-label {
+      opacity: 1;
+      transform: translateX(0);
+      transition: 0.25s 0.1s ease-in opacity, 0.15s 0.1s cubic-bezier(.175, .885, .32, 1.275) transform;
+    }
+  }

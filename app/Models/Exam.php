@@ -27,4 +27,9 @@ class Exam extends Model
     {
         return $this->hasMany(QnaExam::class,'exam_id','id');
     }
+    
+    public function qnaExams()
+    {
+        return $this->hasMany(QnaExam::class, 'exam_id');
+    }
 }

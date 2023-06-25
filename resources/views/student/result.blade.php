@@ -3,7 +3,7 @@
     <style>
     @import url('https://fonts.googleapis.com/css2?family=Alice&family=Nanum+Gothic&family=Roboto+Flex&display=swap');
     </style>
-    <link rel="stylesheet" href="{{ asset('css/rsl.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/rsl.scss') }}">
 </head>
 
 @section('content')
@@ -72,53 +72,72 @@
         </div>
     </div>
 </div>
-    <table class="table">
-        <thead>
-            <th>#</th>
-            <th>Exam</th>
-            <th>Result</th>
-            <th>Nilai</th>
-            <th>Status</th>
-        </thead>
 
-        <tbody>
-            @if(count($attempts) > 0)
-                @php $count =1; @endphp
-                @foreach($attempts as $attempt)
-                    <tr>
-                        <td>{{ $count++ }}</td>
-                        <td>{{ $attempt->exam->exam_name }}</td>
-                        <td>
+@if(count($attempts) > 0)
+  @php $count =1; @endphp
+  <div class="row d-flex pt-3">
+    @foreach($attempts as $attempt)
+      <div class="col-3">
+        <div class="box">
+          <div class="box-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="green" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 3a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3H6a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3V6a3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3h12a3 3 0 0 0 3-3 3 3 0 0 0-3-3z"></path>
+            </svg>
+          </div>
+          <div class="box-label">{{ $attempt->exam->exam_name }}</div>
+          <div class="box-title">Hasil Percobaan Tryout Akar Ilmu {{ $count++ }}</div>
+          <div class="box-image">
+            <div class="d-flex justify-content-between align-items-end">
+                <div>
+                    <h4 class="mb-0 pl-2">Nilai</h4>
+                </div>
+                <div class="text-end pr-2">
+                    <h4>{{ $attempt->marks }}</h4>
+                </div>
+            </div>
+            <div style="margin-top: -8px" class="d-flex justify-content-between align-items-end">
+                <div>
+                    <h4 class="mb-0 pl-2">Status</h4>
+                </div>
+                <div class="text-end pr-2">
+                    <h4>
                             @if($attempt->status == 0)
                                 not declared
                             @else
                                 @if($attempt->marks >= $attempt->exam->pass_marks)
                                     <span style="color: green">Lulus</span>
                                 @else
-                                    <span style="color: red"><p>Tidak Lulus</p></span>
+                                    <span style="color: red; font-size: 20px">Tidak Lulus</span>
                                 @endif
                             @endif
-                        </td>
-                        <td>
-                            <span>{{ $attempt->marks }}</span>
-                        </td>
-                        <td>
-                            @if($attempt->status == 0)
-                                <span style="color: green">Pending</span>
-                            @else
-                               <a href="#" data-id="{{ $attempt->id }}" class="reviewExam" data-toggle="modal" data-target="#reviewQnaModal">Review QNA</a>
-                            @endif
-                        </td>
-                    </tr>
-                @endforeach
-            @else
-
-                <tr>
-                    <td colspan="8">Anda belum mengerjakan</td>
-                </tr>
-            @endif
-        </tbody>
-    </table>
+                    </h4>
+                </div>
+            </div>
+            <img src="{{ asset('images/review.gif') }}" alt="">
+          </div>
+          <div class="studio-button">
+            <div class="studio-button-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+              </svg>
+            </div>
+            <div class="studio-button-label">
+                @if($attempt->status == 0)
+                    <span style="color: green">Pending</span>
+                @else
+                    <a style="color: white" href="#" data-id="{{ $attempt->id }}" class="reviewExam" data-toggle="modal" data-target="#reviewQnaModal">Review</a>
+                @endif
+            </div>
+          </div>
+        </div>
+      </div>
+    @endforeach
+  </div>
+@else
+  <tr>
+    <td colspan="8">Anda belum mengerjakan</td>
+  </tr>
+@endif
 
     <!-- Modal -->
     <div class="modal fade" id="reviewQnaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
