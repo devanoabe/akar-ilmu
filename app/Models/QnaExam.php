@@ -24,4 +24,5 @@ class QnaExam extends Model
     {
         return $this->hasMany(Answer::class,'questions_id','question_id');
     }
+
 }

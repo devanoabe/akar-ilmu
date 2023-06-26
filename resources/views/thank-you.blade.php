@@ -1,15 +1,21 @@
-{{-- <h1>aaa</h1> --}}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link rel="stylesheet" href="{{ asset('css/ty.css') }}">
+    </head>
 
-@extends('layouts.app')
-
-@section('content')
-    <div class="container">
-        <div class="text-center">
-            <h2>Terimakasih telah menyelesaikan Ujian {{ Auth::user()->name }}</h2>
-            <a href="/dashboard" class="btn btn-info">Kembali</a>
+    <body>
+        <div class='box'>
+            <h1 style="font-size: 60px;" class='heading'>Terimakasih telah<br> 
+                    menyelesaikan<br> 
+                    Ujian, {{ Auth::user()->name }}!</h1>
+        </div>  
+        <div>
+        <button>
+        <a href="/dashboard" >Kembali</a>
+        </button>
         </div>
-    </div>
-@endsection
-
-
-
+        
+    </body>
+</html>
+   

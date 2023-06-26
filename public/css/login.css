@@ -6,6 +6,26 @@ a:hover {
     color: #ff8585;
 }
 
+.align-items-center {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    padding: 20px;
+  }
+
+
+.form-group i{
+    font-size: 20px;
+    background-color: rgba(255, 255, 255, 0.544);
+    padding: 8px;
+    border-radius: 10px;
+    box-shadow: 9px 9px 9px -2px rgba(0, 0, 0, 0.033);
+    -webkit-box-shadow: 9px 9px 9px -2px rgba(0, 0, 0, 0.075);
+    -moz-box-shadow: 9px 9px 9px -2px rgba(0, 0, 0, 0.054);
+    margin-right: 8px;
+    margin-bottom: 10px;
+}
+
 .auth-wrapper {
     height: 100vh;
     background-color: #ff8585;

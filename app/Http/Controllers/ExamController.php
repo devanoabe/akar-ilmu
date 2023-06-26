@@ -23,9 +23,15 @@ class ExamController extends Controller
             
                 if(count($qnaExam[0]['getQnaExam']) > 0 ){
                     
-
                     $qna = QnaExam::where('exam_id', $qnaExam[0]['id'])->with('question', 'answers')->get();
-                    return view('student.exam-dashboard',['success'=>true, 'exam'=>$qnaExam, 'qna'=>$qna]);
+
+                    // Hitung jumlah soal pada setiap exam
+                    $jumlah_soal = array();
+                    foreach($qnaExam as $exam){
+                        $jumlah_soal[$exam['id']] = count($exam['getQnaExam']);
+                    }
+
+                    return view('student.exam-dashboard',['success'=>true, 'exam'=>$qnaExam, 'qna'=>$qna, 'jumlah_soal'=>$jumlah_soal]);
 
 
                 }else{ 

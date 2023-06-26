@@ -50,25 +50,25 @@
             <li></li>
         </ul>
         <div class="d-none d-sm-flex col-sm-6 col-lg-8 align-items-center p-5">
-            <div class="align-items-center d-lg-flex flex-column text-white">
+            <div class="d-lg-flex flex-column text-white">
                 <img src="" class="mb-3">
-                <h1 style="text-align: center; font-weight: bolder; color: white; margin-left: 180px" classname="d-flex">Hi 👋 Selamat Datang <br> di AKAR-ILMU</h1>
+                <h1 style="text-align: left; font-weight: bolder; color: white;">Hi 👋 Selamat Datang <br> di AKAR-ILMU</h1>
+                <p style="width: 60%">Akar Ilmu adalah sebuah aplikasi tryout berbasis web yang dirancang untuk membantu siswa dan siswi dalam mempersiapkan diri menghadapi ujian dengan lebih baik. Aplikasi ini menawarkan berbagai fitur dan fasilitas yang dapat membantu siswa dan siswi meningkatkan kemampuan dan pengetahuan mereka.</p>
             </div>
         </div>
 
         <div class="d-flex justify-content-center col-sm-6 col-lg-4 align-items-center bg-white">
             <div style="width: 300px" class="form-wrapper">
                     <div class="mb-4">
-                        <h3 class="font-medium mb-1">REGISTER </h3>
+                        <h1 style="font-weight: bolder; font-size: 42px" class="font-bolder mb-0">Register</h1>
                     </div>
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
                         <div class="mb-10">
                             <div class="form-group">
-                                <label for="mail" class="">Name</label>
+                                <i class="fa fa-user" aria-hidden="true"></i><label for="mail" class="">Name</label>
                                         <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name"
                                             value="{{ old('name') }}" required autocomplete="name" autofocus>
-                                        
                                         @error('name')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -77,8 +77,8 @@
                             </div>
 
                             <div class="mb-10">
-                                        <div class="form-group">
-                                            <label for="mail" class="">Email</label>
+                                <div class="form-group">
+                                    <i class="fa fa-envelope" aria-hidden="true"></i><label for="mail" class="">Email</label>
                                      <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email"
                                             value="{{ old('email') }}" required autocomplete="email">
                                         
@@ -91,7 +91,7 @@
 
                                         <div class="mb-10">
                                             <div class="form-group">
-                                                <label for="mail" class="">Username</label>
+                                            <i class="fa fa-address-card" aria-hidden="true"></i><label for="mail" class="">Username</label>
                                              <input id="username" type="text" class="form-control @error('username') is-invalid @enderror" name="username"
                                                             value="{{ old('username') }}" required autocomplete="username" autofocus>
                                                         
@@ -103,8 +103,8 @@
                                             </div>
 
                                         <div class="mb-10">
-                                                    <div class="form-group">
-                                                        <label for="mail" class="">Telepon</label>
+                                            <div class="form-group">
+                                            <i class="fa fa-phone-square" aria-hidden="true"></i><label for="mail" class="">Telepon</label>
                                              <input id="telepon" type="text" class="form-control @error('telepon') is-invalid @enderror" name="telepon"
                                                         value="{{ old('telepon') }}" required autocomplete="telepon" autofocus>
                                                     
@@ -115,7 +115,7 @@
                                                     @enderror
                                                     </div>
                             <div class="form-group">
-                                <label for="password" class="">Password</label>
+                            <i class="fa fa-lock" aria-hidden="true"></i><label for="password" class="">Password</label>
                                 <input id="password" type="password"
                                     class="form-control @error('password') is-invalid @enderror" name="password"
                                     required autocomplete="current-password">
@@ -129,7 +129,7 @@
 
 
                             <div class="form-group">
-                                    <label for="password" class="">Confirm Password</label>
+                            <i class="fa fa-unlock-alt" aria-hidden="true"></i><label for="password" class="">Confirm Password</label>
                                     <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required
                                         autocomplete="new-password">
                                 
@@ -139,7 +139,7 @@
                                     </span>
                                     @enderror
                                 </div>
-                            <button type="submit" class="btn btn-primary btn-block mt-3 border-0">
+                            <button style="background-color: black; color: white;" type="submit" class="btn btn-block mt-3 border-0">
                               {{ __('Register') }}
                             </button>
                         </div>
