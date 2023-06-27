@@ -2,6 +2,8 @@
 <html lang="en">
     <head>
         <link rel="stylesheet" href="{{ asset('css/ty.css') }}">
+        <title>Terimakasih | Akar-Ilmu</title>
+        <link rel="icon" href="{{ asset('images/icon.jpeg') }}">
     </head>
 
     <body>

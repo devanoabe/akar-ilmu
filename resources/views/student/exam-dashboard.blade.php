@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="icon" href="{{ asset('images/icon.jpeg') }}">
+    <title>Troyout | Akar-Ilmu</title>
     <link rel="stylesheet" href="{{ asset('css/qna.css') }}">
 </head>
 <body>
@@ -26,14 +27,14 @@
                 <h6 style="padding-top: 20px; font-size: 23px">Tryout</h6>
                 <h1 class="text-left" style = "font-size: 50px; font-weight: bolder">{{ $exam[0]['exam_name'] }}</h1>
                 <h6><i class="fa fa-clock pr-2" aria-hidden="true"></i>Waktu : {{ $exam[0]['time'] }}</h6>
-                <h6><i class="fa fa-asterisk pr-2" aria-hidden="true"></i>Keterangan : {{ $exam[0]['keterangan'] }}</h6>
+                <h6><i class="fa fa-asterisk pr-2" aria-hidden="true"></i>Keterangan : {{ $exam[0]['updated_at'] }}</h6>
                 <h6><i class="fa fa-square pr-2" aria-hidden="true"></i>Jumlah : 
                     @foreach($jumlah_soal as $exam_id => $jumlah)
                         {{ $jumlah }} soal
                         <br>
                     @endforeach
                 </h6>
-                <h6><i class="fa fa-calendar pr-2" aria-hidden="true"></i>Tanggal : {{ $exam[0]['date'] }}</h6>
+                <h6><i class="fa fa-calendar pr-2" aria-hidden="true"></i>Update : {{ $exam[0]['date'] }}</h6>
             </div>
         </div>
     </div>

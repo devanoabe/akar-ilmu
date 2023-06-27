@@ -31,7 +31,6 @@ class MataPelajaranController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'id' => 'required',
             'namaMapel' => 'required',
         ]);
         MataPelajaran::create($request->all());

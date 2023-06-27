@@ -19,7 +19,7 @@
                         <thead>
                             <tr>
                                 <th>Name</th>
-                                <th>Role <i class="fa fa-arrow-down fa-xs" aria-hidden="true"></i></th>
+                                <th>Role<i class="fa fa-arrow-down fa-xs" aria-hidden="true"></i></th>
                                 <th>Username</th>
                                 <th>Tanggal</th>
                                 <th>Telepon</th>

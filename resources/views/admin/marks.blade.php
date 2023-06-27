@@ -33,7 +33,7 @@
     <table class="table table-borderless">
         <thead>
             <tr>
-                <th>Id</th>
+                <th>No</th>
                 <th>Nama Tryout</th>
                 <th>Nilai/Soal</th>
                 <th>Nilai Total</th>

@@ -4,6 +4,7 @@
     @import url('https://fonts.googleapis.com/css2?family=Alice&family=Nanum+Gothic&family=Roboto+Flex&display=swap');
     </style>
     <link rel="stylesheet" href="{{ asset('css/dbs.css') }}">
+    <link rel="icon" href="{{ asset('images/icon.jpeg') }}">
 </head>
 
 @section('content')

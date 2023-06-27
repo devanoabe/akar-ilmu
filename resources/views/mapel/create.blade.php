@@ -21,12 +21,8 @@
                     <form method="post" action="{{ route('mapel.store') }}" id="myForm">
                         @csrf
                         <div class="form-group">
-                            <label for="id">Id</label>
-                            <input type="text" name="id" class="form-control" id="id" aria-describedby="id" >
-                        </div>
-                        <div class="form-group">
                             <label for="namaMapel">Nama Mapel</label>
-                            <input type="text" name="namaMapel" class="form-control" id="namaMapel" aria-describedby="id" >
+                            <input style="background-color: #f7f7f7" type="text" name="namaMapel" class="form-control" id="namaMapel" aria-describedby="id" >
                         </div>
                         <button type="submit" class="btn btn-primary mt-3">Submit</button>
                     </form>
